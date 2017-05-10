@@ -53,8 +53,13 @@ body{
 .widget {
     border-bottom: 1px;
     border-color: #fff; 
-    padding: 0 30px;
+    padding: 0 40px;
     margin-bottom: 20px;
+}
+.widget a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
 }
 .title-bg-line-bl {
     border-left: 4px solid;
@@ -193,5 +198,35 @@ a:hover{
     color: #333;
     background-color: #fff;
     border-radius: 4px;
+}
+.foottitle
+{   position:relative;
+    border-color: #fff;
+    border-bottom: 1px solid;
+    padding-bottom: 10px;    
+
+}
+.foottitle:after
+{
+    content: "";
+    width: 90px;
+    height: 1px;
+    background: #d9534f;
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+}
+.copyright{
+    background: #111;
+    font-size: 13px;
+    text-align: center;
+    color: #777;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1px solid #303030;
+}
+
+.glyphicon {
+    padding-right:5px;
 }
 
