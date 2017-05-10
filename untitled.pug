@@ -1,0 +1,218 @@
+    header(style='background-image:url(./images/1.jpg);height:200px')
+        .container
+            .row
+                .col-sm-12
+                    .col-md-6
+                        h1(style='color:#f5f5f5') 呼和浩特民族学院 
+                            small(style='color:#f5f5f5') 传媒系 
+                    .col-md-6
+    
+    nav.navbar.navbar-default
+        .container(style='margin-bottom: 0px')
+            .navbar-header
+                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                //a.navbar-brand(href='#') Project name
+            .navbar-collapse.collapse
+                ul.nav.navbar-nav
+                    li.active
+                        a(href='#') 首页                                 
+                    li.dropdown
+                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', data-hover="dropdown",aria-expanded='false')
+                            | 系部概况
+                            span.caret
+                        ul.dropdown-menu(role='menu')
+                            li
+                                a(href='#') 机构设置
+                            li
+                                a(href='#') 师资队伍
+                    li.dropdown
+                        a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+                            | 教学科研 
+                            span.caret
+                        ul.dropdown-menu(role='menu')
+                            li
+                                a(href='#') 专业建设
+                            li
+                                a(href='#') 课程建设
+                            li
+                                a(href='#') 教学条件建设
+                            li
+                                a(href='#') 教学活动    
+                    li
+                        a(href='#') 新闻动态      
+                    li
+                        a(href='/') 党建工作
+                    li
+                        a(href='/') 团学工作
+                    li
+                        a(href='/') 合作交流
+                    li
+                        a(href='/') 学生作品
+                    li
+                        a(href='/') 就业信息
+                    li
+                        a(href='/') 校友风采
+                    li                   
+                        a(href='/') 规章制度    
+
+
+    .container
+        #carousel-example-generic.carousel.slide(data-ride='carousel')
+            // Indicators
+            ol.carousel-indicators
+                li.active(data-target='#carousel-example-generic', data-slide-to='0')
+                li(data-target='#carousel-example-generic', data-slide-to='1')
+                li(data-target='#carousel-example-generic', data-slide-to='2')
+            // Wrapper for slides
+            .carousel-inner(role='listbox')
+                .item.active
+                    img(src='./images/banner1.jpg', alt='...')
+                    .carousel-caption
+                        | ...
+                .item
+                    img(src='./images/banner2.jpg', alt='...')
+                    .carousel-caption
+                        | ...
+                .item
+                    img(src='./images/banner2.jpg', alt='...')
+                    .carousel-caption
+                        | ...
+            // Controls
+            a.left.carousel-control(href='#carousel-example-generic', role='button', data-slide='prev')
+                span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
+                span.sr-only Previous
+            a.right.carousel-control(href='#carousel-example-generic', role='button', data-slide='next')
+                span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
+                span.sr-only Next
+   
+    .container
+        .content
+            .row
+                .col-md-12
+                    h3.title-bg-line-bl
+                        span 新闻动态 
+                .col-md-6
+                    .media
+                        .media-left.media-top
+                            a(href='#')
+                                img.media-object(src='./images/90x90.gif', alt='...')
+                        .media-body
+                            h4.media-heading Middle aligned media1
+                            p |Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commoCras   purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nvulputate fringilla. Donec lacinia congue felis in faucibus.
+                            
+                    .media-date    
+                        i.glyphicon.glyphicon-calendar(aria-hidden='true') 2017年5月1日
+                        i.glyphicon.glyphicon-pencil(aria-hidden='true') 00评论
+                        i.glyphicon.glyphicon-user(aria-hidden='true') 发布者：                          
+                .col-md-6
+                    .media
+                        .media-left.media-top
+                            a(href='#')
+                                img.media-object(src='./images/90x90.gif', alt='...')
+                        .media-body
+                            h4.media-heading Middle aligned media2
+                            p | Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi 
+                            |Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. 
+                            
+                    .media-date    
+                        i.glyphicon.glyphicon-calendar(aria-hidden='true') 2017年5月1日
+                        i.glyphicon.glyphicon-pencil(aria-hidden='true') 00评论
+                        i.glyphicon.glyphicon-user(aria-hidden='true') 发布者：
+                .col-md-6
+                    .media
+                        .media-left.media-top
+                            a(href='#')
+                                img.media-object(src='./images/90x90.gif', alt='...')
+                        .media-body
+                            h4.media-heading Middle aligned media3
+                            p | Cras sit amet nibh libero, in gravida nulla.
+                            p   Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi 
+                            p    |Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. 
+                            p   | Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi 
+                            p   |Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. 
+                    .media-date    
+                                
+                        i.glyphicon.glyphicon-calendar(aria-hidden='true') 2017年5月1日
+                        i.glyphicon.glyphicon-pencil(aria-hidden='true') 00评论
+                        i.glyphicon.glyphicon-user(aria-hidden='true') 发布者：
+                .col-md-6
+                    .media
+                        .media-left.media-top
+                            a(href='#')
+                                img.media-object(src='./images/90x90.gif', alt='...')
+                        .media-body
+                            h4.media-heading Middle aligned media4
+                            p  | Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                               
+                    .media-date    
+                        i.glyphicon.glyphicon-calendar(aria-hidden='true') 2017年5月1日
+                        i.glyphicon.glyphicon-pencil(aria-hidden='true') 00评论
+                        i.glyphicon.glyphicon-user(aria-hidden='true') 发布者：
+                .col-md-6
+                    .media
+                        .media-left.media-top
+                            a(href='#')
+                                img.media-object(src='./images/90x90.gif', alt='...')
+                        .media-body
+                            h4.media-heading Middle aligned media5
+                            p | Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                
+                    .media-date    
+                        i.glyphicon.glyphicon-calendar(aria-hidden='true') 2017年5月1日
+                        i.glyphicon.glyphicon-pencil(aria-hidden='true') 00评论
+                        i.glyphicon.glyphicon-user(aria-hidden='true') 发布者：
+                .col-md-6
+                    .media
+                        .media-left.media-top
+                            a(href='#')
+                                img.media-object(src='./images/90x90.gif', alt='...')
+                        .media-body
+                            a(href='')
+                                h4.media-heading Middle aligned media6
+                            p | Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commoCras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nvulputate fringilla. Donec lacinia congue felis in faucibus.
+                                
+                    .media-date    
+                        i.glyphicon.glyphicon-calendar(aria-hidden='true') 2017年5月1日
+                        i.glyphicon.glyphicon-pencil(aria-hidden='true') 00评论
+                        i.glyphicon.glyphicon-user(aria-hidden='true') 发布者：
+                .float_div
+                    a.btn.btn-primary.btn-sm(type='button',role='button') 更多内容
+
+
+    .container
+        .content
+            .row
+                .col-xs-12.col-sm-6
+                    h3.title-bg-line-rd
+                        span 新闻动态
+                    .float_div
+                        a.btn.btn-danger.btn-sm(type='button',role='button') 更多内容
+                                  
+                .col-xs-12.col-sm-6
+                    h3.title-bg-line-yl
+                        span 党建工作
+                    .float_div
+                        a.btn.btn-warning.btn-sm(type='button',role='button') 更多内容
+                    ul.media-list
+                        li.media(style='height:65px')
+                            .media-left
+                                a(href='#')
+                                    img.media-object(src='./images/60x60.gif', alt='...')
+                            .media-body
+                                h4.media-heading Media heading
+                                p |Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.    Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.  
+                                    
+                    ul.media-list
+                        li.media(style='height:65px')
+                            .media-left
+                                a(href='#')
+                                    img.media-object(src='./images/60x60.gif', alt='...')
+                            .media-body
+                                h4.media-heading Media heading
+                                p   |Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.    Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+
+        

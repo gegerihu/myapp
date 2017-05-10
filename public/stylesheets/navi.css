@@ -1,0 +1,137 @@
+/*
+Template Name: PlainSimple
+File: Navigation CSS
+Author: OS Templates
+Author URI: #
+Licence: <a href="#">Website Template Licence</a>
+*/
+
+#header ul#topnav{
+	display:block;
+	width:1200px;
+	height:50px;
+	clear:both;
+	margin:0;
+	padding:0;
+	list-style:none;
+	font-size:14px;
+	font-weight:bold;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#FFFFFF;
+	background-color:#159FC8;
+	}
+
+#header ul#topnav ul, #header li{
+	float:left;
+	list-style:none;
+	margin:0;
+    height:50px;
+	padding:0;
+	}
+
+#header li a:link, #header li a:visited, #header li a:hover{
+	display:block;
+	margin:0 2px 0 0;
+	padding:15px 20px;
+	color:#FFFFFF;
+	background-color:#159FC8;
+	}
+
+#header ul#topnav ul li a:link, #header ul#topnav ul li a:visited{
+	border:none;
+	}
+
+#header ul#topnav li.last a{
+	margin-right:0;
+	}
+
+#header li a:hover, #header ul#topnav li.active a{
+	color:#666666;
+	padding: 15px 20px;
+	background-color:#159FC8;
+	}
+	
+#header li li a:link, #header li li a:visited{
+	width:150px;
+	float:none;
+	margin:0;
+	padding:15px 10px;
+	font-size:14px;
+	font-weight:normal;
+	color:#FFFFFF;
+	background-color:#159FC8;
+	}
+	
+#header li li a:hover{
+	color:#666666;
+	background-color:#CCCCCC;
+	}
+
+#header li ul{
+	background:#FFFFFF;
+	z-index:9999;
+	position:absolute;
+	left:-999em;
+	width:170px;
+	border-left:1px solid #CCCCCC;
+	border-bottom:1px solid #CCCCCC;
+	}
+
+#header li ul a{width:140px;}
+
+#header li ul ul{margin:-32px 0 0 0;}
+
+#header li:hover ul ul{left:-999em;}
+
+#header li:hover ul, #header li li:hover ul{left:auto;}
+
+#header li:hover{position:static;}
+
+#header li.last a{margin-right:0;}
+
+/* ----------------------------------------------Column Navigation-------------------------------------*/
+
+#column .subnav{display:block; width:250px; padding:25px; background-color:#F9F9F9; margin-bottom:30px;}
+
+#column .subnav h2{
+	margin:0 0 20px 0;
+	padding:0 0 14px 0;
+	font-size:20px;
+	font-weight:normal;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	color:#666666;
+	background-color:#F9F9F9;
+	line-height:normal;
+	border-bottom:1px dotted #666666;
+	}
+
+#column .subnav ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+	}
+
+#column .subnav li{
+	margin:0 0 3px 0;
+	padding:0;
+	}
+
+#column .subnav ul ul, #column .subnav ul ul ul, #column .subnav ul ul ul ul, #column .subnav ul ul ul ul ul{border-top:none; padding-top:0;}
+
+#column .subnav a{
+	display:block;
+	margin:0;
+	padding:5px 10px 5px 20px;
+	color:#777777;
+	background:url("../images/turk_file.gif") no-repeat 10px center #F9F9F9;
+	text-decoration:none;
+	border-bottom:1px dotted #666666;
+	}
+
+#column .subnav a:hover{color:#169FC8; background-color:#F9F9F9;}
+
+#column .subnav ul ul a, #column .subnav ul ul ul a, #column .subnav ul ul ul ul a, #column .subnav ul ul ul ul ul a{background:url("../images/black_file.gif") no-repeat #F9F9F9;}
+#column .subnav ul ul a{padding-left:40px; background-position:30px center;}
+#column .subnav ul ul ul a{padding-left:50px; background-position:40px center;}
+#column .subnav ul ul ul ul a{padding-left:60px; background-position:50px center;}
+#column .subnav ul ul ul ul ul a{padding-left:70px; background-position:60px center;}

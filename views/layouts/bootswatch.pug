@@ -1,0 +1,47 @@
+extends ../_bootstrap
+block body
+	// Fixed navbar
+	.container
+		#myslider.carousel.slide(data-ride='carousel')
+			ol.carousel-indicators
+				li.active(data-target='#myslider',data-slide-to='0')
+				li(data-target='#myslider',data-slide-to='1')
+				li(data-target='#myslider',data-slide-to='2')
+			.carousel-inner(role='listbox')
+				.item.active
+					img(src='./images/banner1.jpg',alt='')
+					.carousel-caption
+						|....
+				.item
+					img(src='./images/banner2.jpg',alt='')
+					.carousel-caption
+						|....
+				.item
+					img(src='./images/banner3.jpg',alt='')
+					.carousel-caption
+						|....
+
+			a.carousel-control.left(href='/#myslider',role='button', data-slide='prev')
+				span.glyphicon.glyphicon-chevron-left(aria-hidden='ture')
+				span.sr-only Previous
+			a.carousel-control.right(href='/#myslider',role='button', data-slide='next')
+				span.glyphicon.glyphicon-chevron-right(aria-hidden='ture')
+				span.sr-only Next
+	.container
+		.content
+			.row
+				.col-md-12
+					h3.title-bg-line-bl
+						span 新闻动态
+	.container
+		.content
+			.row
+				.col-md-12
+					h3.title-bg-line-rd
+						span 新闻动态
+	.container
+		.content
+			.row
+				.col-md-12
+					h3.title-bg-line-yl
+						span 新闻动态å

@@ -1,0 +1,43 @@
+#banner_tabs.flexslider
+  ul.slides  
+    li
+      a(title='', href='#')
+      img(alt='', style='background: url(images/example.jpg) no-repeat center;', src='images/alpha.png')
+    li
+      a(title='', href='#')
+      img(alt='', style='background: url(images/banner2.jpg) no-repeat center;', src='images/alpha.png')
+    li
+      a(title='', href='#')
+      img(alt='', style='background: url(images/banner3.jpg) no-repeat center;', src='images/alpha.png')
+  ul.flex-direction-nav
+    li
+      a.flex-prev(href='javascript:;') Previous
+    li
+      a.flex-next(href='javascript:;') Next
+  ol#bannerCtrl.flex-control-nav.flex-control-paging
+    li
+      a 1
+    li
+      a 2
+    li
+      a 2
+script(src='js/jquery-1.10.2.min.js')
+script(src='js/slider.js')
+script(type='text/javascript').
+  $(function() {
+  var bannerSlider = new Slider($('#banner_tabs'), {
+  time: 2500,
+  delay: 400,
+  event: 'hover',
+  auto: false,
+  mode: 'fade',
+  controller: $('#bannerCtrl'),
+  activeControllerCls: 'active'
+  });
+  $('#banner_tabs .flex-prev').click(function() {
+  bannerSlider.prev()
+  });
+  $('#banner_tabs .flex-next').click(function() {
+  bannerSlider.next()
+  });
+  })

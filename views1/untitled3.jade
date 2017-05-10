@@ -1,0 +1,315 @@
+doctype transitional
+html
+  head
+    title PlainSimple | Style Demo
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    meta(http-equiv='imagetoolbar', content='no')
+    link(rel='stylesheet', href='styles/layout.css', type='text/css')
+  body#top
+    #container
+      #header
+        #logo
+          h1
+            a(href='#') PlainSimple
+          p Free CSS Website Template
+          br.clear
+        #info
+          ul
+            li Tel: xxxxx xxxxxxxxxx
+            li  
+            li Mail: info@domain.com
+        ul#topnav
+          li
+            a(href='index.html') Home
+          li.active
+            a(href='style-demo.html') Style Demo
+          li
+            a(href='full-width.html') Full Width
+          li
+            a(href='#') DropDown
+            ul
+              li
+                a(href='#') Link 1
+              li
+                a(href='#') Link 2
+              li
+                a(href='#') Link 3
+          li.last
+            a(href='#') A Long Link Text
+      #breadcrumb
+        ul
+          li.first You Are Here
+          li »
+          li
+            a(href='#') Home
+          li »
+          li
+            a(href='#') Grand Parent
+          li »
+          li
+            a(href='#') Parent
+          li »
+          li.current
+            a(href='#') Child
+      #wrapper
+        // START WRAPPER ##############################################################
+        #content
+          h1 <h1> to <h6> - Headline Colour and Size Are All The Same
+          img.imgr(src='images/demo/imgr.gif', alt='', width='125', height='125')
+          p
+            | Aliquatjusto quisque nam consequat doloreet vest orna partur scetur portortis nam. Metadipiscing eget facilis elit sagittis felisi eger id justo maurisus convallicitur.
+          p
+            | Dapiensociis 
+            a(href='#') temper donec auctortortis cumsan
+            |  et curabitur condis lorem loborttis leo. Ipsumcommodo libero nunc at in velis tincidunt pellentum tincidunt vel lorem.
+          img.imgl(src='images/demo/imgl.gif', alt='', width='125', height='125')
+          p
+            | This is a W3C compliant free website template from 
+            a(href='http://www.cssmoban.com/', title='网站模板') 网站模板
+            | . This template is distributed using a 
+            a(href='#') Website Template Licence
+            | .
+          p
+            | You can use and modify the template for both personal and commercial use. You must keep all copyright information and credit links in the template and associated files. For more CSS templates visit 
+            a(href='#') Free Website Templates
+            | .
+          p
+            | Portortornec condimenterdum eget consectetuer condis consequam pretium pellus sed mauris enim. Puruselit mauris nulla hendimentesque elit semper nam a sapien urna sempus.
+          h2 Table(s)
+          table(summary='Summary Here', cellpadding='0', cellspacing='0')
+            thead
+              tr
+                th Header 1
+                th Header 2
+                th Header 3
+                th Header 4
+            tbody
+              tr.light
+                td Value 1
+                td Value 2
+                td Value 3
+                td Value 4
+              tr.dark
+                td Value 5
+                td Value 6
+                td Value 7
+                td Value 8
+              tr.light
+                td Value 9
+                td Value 10
+                td Value 11
+                td Value 12
+              tr.dark
+                td Value 13
+                td Value 14
+                td Value 15
+                td Value 16
+          #comments
+            h2 Comments
+            ul.commentlist
+              li.comment_odd
+                .author
+                  img.avatar(src='images/demo/avatar.gif', width='32', height='32', alt='')
+                  span.name
+                    a(href='#') A Name
+                  span.wrote wrote:
+                .submitdate
+                  a(href='#') August 4, 2009 at 8:35 am
+                p
+                  | This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.
+              li.comment_even
+                .author
+                  img.avatar(src='images/demo/avatar.gif', width='32', height='32', alt='')
+                  span.name
+                    a(href='#') A Name
+                  span.wrote wrote:
+                .submitdate
+                  a(href='#') August 4, 2009 at 8:35 am
+                p
+                  | This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.
+              li.comment_odd
+                .author
+                  img.avatar(src='images/demo/avatar.gif', width='32', height='32', alt='')
+                  span.name
+                    a(href='#') A Name
+                  span.wrote wrote:
+                .submitdate
+                  a(href='#') August 4, 2009 at 8:35 am
+                p
+                  | This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.
+          h2 Write A Comment
+          #respond
+            form(action='#', method='post')
+              p
+                input#name(type='text', name='name', value='', size='22')
+                label(for='name')
+                  small Name (required)
+              p
+                input#email(type='text', name='email', value='', size='22')
+                label(for='email')
+                  small Mail (required)
+              p
+                textarea#comment(name='comment', cols='100%', rows='10')
+                label(for='comment', style='display:none;')
+                  small Comment (required)
+              p
+                input#submit(name='submit', type='submit', value='Submit Form')
+                input#reset(name='reset', type='reset', tabindex='5', value='Reset Form')
+        #column
+          .subnav
+            h2 Secondary Navigation
+            ul
+              li
+                a(href='#') Open Source Templates
+              li
+                a(href='#') Free CSS Templates
+                ul
+                  li
+                    a(href='#') Free XHTML Templates
+                  li
+                    a(href='#') Free Website Templates
+              li
+                a(href='#') Open Source Layouts
+                ul
+                  li
+                    a(href='#') Open Source Software
+                  li
+                    a(href='#') Open Source Webdesign
+                    ul
+                      li
+                        a(href='#') Open Source Downloads
+                      li
+                        a(href='#') Open Source Website
+              li
+                a(href='#') Open Source Themes
+          .holder
+            h2.title
+              img(src='images/demo/60x60.gif', alt='')
+              | Nullamlacus dui ipsum conseque loborttis
+            p
+              | Nullamlacus dui ipsum conseque loborttis non euisque morbi penas dapibulum orna. Urnaultrices quis curabitur phasellentesque.
+            p.readmore
+              a(href='#') Continue Reading »
+          .holder
+            h2 Lorem ipsum dolor
+            p Nuncsed sed conseque a at quismodo tris mauristibus sed habiturpiscinia sed.
+            ul
+              li
+                a(href='#') Lorem ipsum dolor sit
+              li Etiam vel sapien et
+              li
+                a(href='#') Etiam vel sapien et
+            p
+              | Nuncsed sed conseque a at quismodo tris mauristibus sed habiturpiscinia sed. Condimentumsantincidunt dui mattis magna intesque purus orci augue lor nibh.
+            p.readmore
+              a(href='#') Continue Reading »
+          .flickrbox
+            h2.title Latest From Flickr
+            ul
+              li
+                a(href='#')
+                  img(src='images/demo/80x80.gif', alt='')
+              li
+                a(href='#')
+                  img(src='images/demo/80x80.gif', alt='')
+              li.last
+                a(href='#')
+                  img(src='images/demo/80x80.gif', alt='')
+              li
+                a(href='#')
+                  img(src='images/demo/80x80.gif', alt='')
+              li
+                a(href='#')
+                  img(src='images/demo/80x80.gif', alt='')
+              li.last
+                a(href='#')
+                  img(src='images/demo/80x80.gif', alt='')
+            br.clear
+        // END WRAPPER ##############################################################
+        br.clear
+      // END ALL
+      #footer
+        .footbox
+          h2 Lacus interdum
+          ul
+            li
+              a(href='#') Lorem ipsum dolor
+            li
+              a(href='#') Suspendisse in neque
+            li
+              a(href='#') Praesent et eros
+            li
+              a(href='#') Lorem ipsum dolor
+            li
+              a(href='#') Suspendisse in neque
+            li.last
+              a(href='#') Praesent et eros
+        .footbox
+          h2 Lacus interdum
+          ul
+            li
+              a(href='#') Lorem ipsum dolor
+            li
+              a(href='#') Suspendisse in neque
+            li
+              a(href='#') Praesent et eros
+            li
+              a(href='#') Lorem ipsum dolor
+            li
+              a(href='#') Suspendisse in neque
+            li.last
+              a(href='#') Praesent et eros
+        .footbox
+          h2 Lacus interdum
+          ul
+            li
+              a(href='#') Lorem ipsum dolor
+            li
+              a(href='#') Suspendisse in neque
+            li
+              a(href='#') Praesent et eros
+            li
+              a(href='#') Lorem ipsum dolor
+            li
+              a(href='#') Suspendisse in neque
+            li.last
+              a(href='#') Praesent et eros
+        .footbox
+          h2 Lacus interdum
+          ul
+            li
+              a(href='#') Lorem ipsum dolor
+            li
+              a(href='#') Suspendisse in neque
+            li
+              a(href='#') Praesent et eros
+            li
+              a(href='#') Lorem ipsum dolor
+            li
+              a(href='#') Suspendisse in neque
+            li.last
+              a(href='#') Praesent et eros
+        .footbox.last
+          h2 Lacus interdum
+          ul
+            li
+              a(href='#') Lorem ipsum dolor
+            li
+              a(href='#') Suspendisse in neque
+            li
+              a(href='#') Praesent et eros
+            li
+              a(href='#') Lorem ipsum dolor
+            li
+              a(href='#') Suspendisse in neque
+            li.last
+              a(href='#') Praesent et eros
+        br.clear
+      #copyright
+        p.fl_left
+          | Copyright © 2011 - All Rights Reserved - 
+          a(href='#') Domain Name
+        p.fl_right
+          | Template from 
+          a(href='http://www.cssmoban.com/', title='网站模板') 网站模板
+        br.clear

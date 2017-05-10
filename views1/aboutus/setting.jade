@@ -1,0 +1,47 @@
+extends ../layout
+
+block content
+  #breadcrumb
+    ul
+      li.first You Are Here
+      li »
+      li
+        a(href='#') Home
+      li »
+      li
+        a(href='#') Grand Parent
+      li »
+      li
+        a(href='#') Parent
+      li »
+      li.current
+        a(href='#') Child
+  #wrapper
+    // START WRAPPER ##############################################################
+    #content
+      h1 <h1> to <h6> - Headline Colour and Size Are All The Same
+      img.imgr(src='../images/imgr.gif', alt='', width='125', height='125')
+      p
+        | Aliquatjusto quisque nam consequat doloreet vest orna partur scetur portortis ntadipiscing eget   facilis elit sagittis felisi eger id justo maurisus convallicitur.
+      p
+        | Dapiensociis 
+        a(href='#') temper donec auctortortis cumsan
+        |  et curabitur condis lorem loborttis leo. Ipsumcommodo libero nunc at in velis tincidllentum   tincidunt vel lorem.
+      img.imgl(src='../images/demo/imgl.gif', alt='', width='125', height='125')
+      p
+        | This is a W3C compliant free website template from 
+        a(href='http://www.cssmoban.com/', title='网站模板') 网站模板
+        | . This template is distributed using a 
+        a(href='#') Website Template Licence
+        | .
+      p
+        | You can use and modify the template for both personal and commercial use. You must keep pyright   information and credit links in the template and associated files. For more mplates visit 
+        a(href='#') Free Website Templates
+        | .
+      p
+        | Portortornec condimenterdum eget consectetuer condis consequam pretium pellus sed mauim.   Puruselit mauris nulla hendimentesque elit semper nam a sapien urna sempus.
+        br.clear
+    // END WRAPPER ##############################################################
+    br.clear
+  // END ALL
+  include ../foot

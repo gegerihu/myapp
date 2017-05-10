@@ -1,0 +1,120 @@
+//- bootstrap.jade
+//- bootstrap mixins
+
+
+//- Including Icon mixins
+include components/icons
+//- Including Alert mixins
+include components/alerts
+//- Including Tooltip mixins
+include components/tooltips
+//- Including Accordion mixins
+include components/accordion
+//- Including Carousel mixins
+include components/carousel
+//- Including Table mixins
+include components/tables
+//- Including Navbar mixins
+include components/navbar
+//- Including Toggle Button mixins
+include components/toggle
+//- Including Nav mixins
+include components/navs
+//- Including Label mixins
+include components/labels
+//- Including Panel mixins
+include components/panels
+//- Including Tab mixins
+include components/tabs
+//- Including Dropdown mixins
+include components/dropdowns
+//- Including Form control mixins
+include components/forms
+//- Including Modal dialog mixins
+include components/modal
+//- Including List group mixins
+include components/list-groups
+//- Including Progress bar mixins
+include components/progress-bars
+//- Including Button mixins
+include components/buttons
+//- Including Image mixins
+include components/images
+//- Including Bootswatch theme mixins
+include components/bootswatch
+
+doctype html
+html(lang="zh-CN")
+	head
+		meta(charset="UTF-8")
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
+		meta(name="viewport",content="width=device-width, initial-scale=1")
+		meta(name="description",content="")
+		meta(name="author",content="")
+		link(rel="icon",href="../../favicon.ico")
+		title= title
+		link(rel="stylesheet",href="bootstrap/dist/css/bootstrap.min.css")
+		link(href='../css/theme.css', rel='stylesheet')
+	body(data-spy="scroll",data-target=".scrollspy")
+		header(style='background-image:url(./images/1.jpg);height:200px')
+			.container
+				.row
+					.col-md-6
+						h1(style='color:#f5f5f5') 呼和浩特民族学院
+	
+		nav.navbar.navbar-default
+			.container(style='margin-bottom: 0px')
+				.navbar-header
+					button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href='#') 传媒系
+				.navbar-collapse.collapse
+					ul.nav.navbar-nav
+						li.active
+							a(href='#') 首页
+						li.dropdown
+							a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+								| 系部概况
+								span.caret
+							ul.dropdown-menu(role='menu')
+								li
+									a(href='#') 机构设置
+								li
+									a(href='#') 师资队伍
+						li.dropdown
+							a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+								| 教学科研
+								span.caret
+							ul.dropdown-menu(role='menu')
+								li
+									a(href='#') 专业建设
+								li
+									a(href='#') 课程建设
+								li
+									a(href='#') 教学条件建设
+								li
+									a(href='#') 教学活动
+						li
+							a(href='') 新闻动态
+						li
+							a(href='') 党建工作
+						li
+							a(href='') 团学工作
+						li
+							a(href='') 合作交流
+						li
+							a(href='') 就业信息
+						li
+							a(href='') 校友风采
+						li
+							a(href='') 规章制度
+		block body
+		block scripts
+			script(src="jquery/dist/jquery.min.js")
+			script(src="bootstrap/dist/js/bootstrap.min.js")
+		include footer
+
+
