@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var aboutus = require('./routes/aboutus');
+var about = require('./routes/about');
 var app = express();
 
 // view engine setup
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 app.use('/home', index);
 app.use('/', index);
 app.use('/users', users);
-app.use('/aboutus', aboutus);
+app.use('/about', about);
 //app.use('/aboutus/setting', aboutus);
 //app.use('/aboutus/teachers', aboutus);
 //app.use('/teach&research/subject', aboutus);

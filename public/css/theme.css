@@ -4,6 +4,11 @@ body{
   /* Margin bottom by footer height */
     
 }
+
+.baractive{
+    font-color: #fff;
+    background-color: #d9534f;
+}
 .container{
     margin-bottom: 10px;
 }
@@ -35,21 +40,15 @@ body{
   width: auto;
 }
 .mainfooter {
-  width: 100%;
   /* Set the fixed height of the footer here */
-  height: 200px;
   background-color: #202020;
   color: #ffffff;
-  padding:20px 0 0 0;
+  padding:20px 0 0 ;
 }
-.friend-links a{
-    display: block;
-    border-bottom: 1px dashed #303030;
-    padding-bottom: 14px;
-    margin-bottom: 14px;
-    color: #959595;
-    
+.mainfooter .container{
+    margin-bottom: 0;
 }
+
 .widget {
     border-bottom: 1px;
     border-color: #fff; 
@@ -145,10 +144,7 @@ body{
     margin: 0px;
     position:relative; 
 }
-.media-object{
-    width: 100px;
-    height: :100px;
-}
+
 .h1, .h2, .h3, h1, h2, h3 {
     margin-top: 15px;
     margin-bottom: 10px;
@@ -161,7 +157,7 @@ body{
     height:30px;
     padding-left: 20px;
     right:10px;
-    top:15px;
+    top:20px;
     }
 
 .media-date{
@@ -173,6 +169,9 @@ body{
 a:hover{
     color:#ff6b6b;
     text-decoration: none;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #333;
 }
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
     color: #fff;
@@ -206,6 +205,17 @@ a:hover{
     padding-bottom: 10px;    
 
 }
+
+.list-group{
+    padding-left: 20px;
+    margin-bottom: 10px;
+
+}
+.list-group-item{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
 .foottitle:after
 {
     content: "";
@@ -229,4 +239,13 @@ a:hover{
 .glyphicon {
     padding-right:5px;
 }
-
+.list-group-item {
+    border:0;  
+    margin-bottom: 0;
+    border-bottom:1px solid #ddd !important;
+}
+.list-group-item:last-child {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
