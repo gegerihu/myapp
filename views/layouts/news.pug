@@ -1,0 +1,31 @@
+extends ../_bootstrap
+block body
+	.container
+		.content
+			.row
+				.col-md-12
+					.col-md-9
+						h3.title-bg-line-bl
+							span 新闻动态
+						.post-list
+							each item in documentList
+								article.post
+									.row
+										.col-xs-3.col-md-3
+											img(src=item.img, alt=item.title)
+										.col-xs-9.col-md-9
+											h4.post-title
+												a(href='' target='_blank') #{item.title}
+											ul.post-meta
+												li 
+													span.glyphicon.glyphicon-time(aria-hidden='true') 
+													|#{item.date}
+												li 
+													span.glyphicon.glyphicon-user(aria-hidden='true') 
+													|由#{item.date}发布
+												li 
+													span.glyphicon.glyphicon-eye-open(aria-hidden='true') 
+													|#{item.date}次阅览
+
+											.post-content 
+												| ggdgdgdgdfgd

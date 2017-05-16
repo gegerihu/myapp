@@ -9,7 +9,7 @@ block body
 				li(data-target='#myslider',data-slide-to='2')
 			.carousel-inner(role='listbox')
 				.item.active
-					img(src='./images/banner1.jpg',alt='')
+					img(src='/images/banner1.jpg',alt='')
 					.carousel-caption
 						|....
 				.item
@@ -33,37 +33,35 @@ block body
 				.col-md-12
 					h3.title-bg-line-bl
 						span 新闻动态
-				.col-md-6
-					.media-left.media-top
-						a(href='#')
-							img.media-object(src='./images/90x90.gif', alt='...')
-					.media-body
-						h4.media-heading Middle aligned media1
-						p |Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commoCras   	purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nvulputate 	fringilla. Donec lacinia congue felis in faucibus.
-								
-					//- .media-date    
-						span.glyphicon.glyphicon-calendar(aria-hidden='true') 
-							|2017年5月1日
-						span.glyphicon.glyphicon-pencil(aria-hidden='true') 
-							|00评论
-						span.glyphicon.glyphicon-user(aria-hidden='true') 
-							|发布者：                          
-				.col-md-6
-					.media
-						.media-left.media-top
-							a(href='#')
-								img.media-object(src='./images/90x90.gif', alt='...')
-						.media-body
-							h4.media-heading Middle aligned media2
-							p | Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. 	Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi 
-								|Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. 
+					.post-list
+							each item in documentList
+								.col-md-6
+									article.post
+										.row
+											.col-xs-3.col-md-3
+												img(src=item.img, alt=item.title)
+											.col-xs-9.col-md-9
+												h4.post-title
+													a(href='' target='_blank') #{item.title}
+												ul.post-meta
+													li 
+													span.glyphicon.glyphicon-time(aria-hidden='true') 
+													|#{item.date}
+													li 
+													span.glyphicon.glyphicon-user(aria-hidden='true') 
+													|由#{item.date}发布
+													li 
+													span.glyphicon.glyphicon-eye-open(aria-hidden='true') 
+													|#{item.date}次阅览
+
+
 							
 					//- .media-date    
 						span.glyphicon.glyphicon-calendar(aria-hidden='true') 2017年5月1日
 						span.glyphicon.glyphicon-pencil(aria-hidden='true') 00评论
 						span.glyphicon.glyphicon-user(aria-hidden='true') 发布者：	
 				.float_div
-					a.btn.btn-primary.btn-sm(type='button',role='button') 更多内容
+					a.btn.btn-primary.btn-sm(href='/news' type='button',role='button') 更多内容
 	.container
 		.content
 			.row

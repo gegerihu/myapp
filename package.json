@@ -14,7 +14,9 @@
     "jade": "~1.11.0",
     "morgan": "~1.8.1",
     "pug": "^2.0.0-rc.1",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "shortid": "^2.2.8",
+    "ueditor": "^1.2.2"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
