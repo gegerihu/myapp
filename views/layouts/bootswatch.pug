@@ -34,25 +34,25 @@ block body
 					h3.title-bg-line-bl
 						span 新闻动态
 					.post-list
-							each item in documentList
-								.col-md-6
-									article.post
-										.row
-											.col-xs-3.col-md-3
-												img(src=item.img, alt=item.title)
-											.col-xs-9.col-md-9
-												h4.post-title
-													a(href='' target='_blank') #{item.title}
-												ul.post-meta
-													li 
-													span.glyphicon.glyphicon-time(aria-hidden='true') 
-													|#{item.date}
-													li 
-													span.glyphicon.glyphicon-user(aria-hidden='true') 
-													|由#{item.date}发布
-													li 
-													span.glyphicon.glyphicon-eye-open(aria-hidden='true') 
-													|#{item.date}次阅览
+						each item in documentList
+							.col-md-6
+								article.post(style='padding-bottom:10px')
+									.row
+										.col-xs-3.col-md-3
+											img(src=item.img, alt=item.title)
+										.col-xs-9.col-md-9
+											h4.post-title
+												a(href='' target='_blank') #{item.title}
+											ul.post-meta
+												li 
+												span.glyphicon.glyphicon-time(aria-hidden='true') 
+												|#{item.date}
+												li 
+												span.glyphicon.glyphicon-user(aria-hidden='true') 
+												|由#{item.date}发布
+												li 
+												span.glyphicon.glyphicon-eye-open(aria-hidden='true') 
+												|#{item.date}次阅览
 
 
 							
@@ -60,7 +60,7 @@ block body
 						span.glyphicon.glyphicon-calendar(aria-hidden='true') 2017年5月1日
 						span.glyphicon.glyphicon-pencil(aria-hidden='true') 00评论
 						span.glyphicon.glyphicon-user(aria-hidden='true') 发布者：	
-				.float_div
+				.float_div(style='top:20px;right:5px')
 					a.btn.btn-primary.btn-sm(href='/news' type='button',role='button') 更多内容
 	.container
 		.content

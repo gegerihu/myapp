@@ -8,24 +8,23 @@ block body
 						h3.title-bg-line-bl
 							span 新闻动态
 						.post-list
-							each item in documentList
+							each item in contents								
 								article.post
 									.row
 										.col-xs-3.col-md-3
-											img(src=item.img, alt=item.title)
+											img(src='/images/1.jpg', alt=item.title)
 										.col-xs-9.col-md-9
 											h4.post-title
-												a(href='' target='_blank') #{item.title}
+												a(href='/news/'+item._id  target='_blank') #{item.title}
 											ul.post-meta
 												li 
 													span.glyphicon.glyphicon-time(aria-hidden='true') 
-													|#{item.date}
+													|#{myDateFormat(item.meta.updateDate)}
 												li 
 													span.glyphicon.glyphicon-user(aria-hidden='true') 
-													|由#{item.date}发布
+													|由#{item.author}发布
 												li 
 													span.glyphicon.glyphicon-eye-open(aria-hidden='true') 
-													|#{item.date}次阅览
-
+													|#{item.clickNum}次阅览
 											.post-content 
-												| ggdgdgdgdfgd
+												| #{item.description}

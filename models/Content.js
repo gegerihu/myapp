@@ -19,15 +19,17 @@ var ContentSchema = new Schema({
     //stitle : String,
     type: { type: String, default: "content" }, // 发布形式 默认为普通文档,约定 singer 为单页面文档
     //category : { type : String , ref : 'ContentCategory'}, //文章类别
-    sortPath : String, //存储所有父节点结构
-    tags : String, // 标签
-    keywords : String,
-    sImg : { type: String, default: "/upload/images/defaultImg.jpg" }, // 文章小图
+    //sortPath : String, //存储所有父节点结构
+   // tags : String, // 标签
+   // keywords : String,
+   // sImg : { type: String, default: "/upload/images/defaultImg.jpg" }, // 文章小图
     description : String,
-    date: { type: Date, default: Date.now },
-    updateDate: { type: Date, default: Date.now }, // 更新时间
-    author : { type: String , ref : 'AdminUser'}, // 文档作者
-    state : { type: Boolean, default: true },  // 是否在前台显示，默认显示
+    
+    meta:{
+        createDate: { type: Date, default: Date.now },
+        updateDate: { type: Date, default: Date.now }},// 更新时间
+    author : { type: String , default : 'AdminUser'}, // 文档作者
+    //state : { type: Boolean, default: true },  // 是否在前台显示，默认显示
     //isTop : { type: Number, default: 0 },  // 是否推荐，默认不推荐 0为不推荐，1为推荐
     clickNum : { type: Number, default: 1 },
     mainContent : {},
@@ -41,9 +43,33 @@ var ContentSchema = new Schema({
    // repositoryPath : String, // git 知识库路径
    // downPath : String, // git 项目下载地址
     //previewPath : String // 插件预览地址
+    
 });
+    
+    ContentSchema.pre('save',function(next){
+        if (this.isNew) {
+            this.meta.createDate = this.meta.updateDate = Date.now ;
+        }
+        else {
+            this.meta.updateDate = Date.now;
+        }
+        next();
+    });
 
 
+    ContentSchema.statics = {
+        fetch: function(cb) {
+            return this
+                .find({})
+                .sort({'meta.updateDate':-1})
+                .exec(cb);
+        },
+        findById: function( id, cb){
+            return this
+                .findOne({_id: id})
+                .exec(cb);
+        }
+    }
 
 // ContentSchema.statics = {
 // //更新评论数

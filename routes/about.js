@@ -10,4 +10,8 @@ router.get('/setting', function(req, res, next) {
   res.render('layouts/about', { title: '机构设置' });
 });
 
+router.get('/signup', function(req, res, next) {
+  res.render('layouts/about', { title: '机构设置' });
+});
+
 module.exports = router;

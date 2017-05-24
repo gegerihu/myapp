@@ -159,7 +159,7 @@ body{
     height:30px;
     padding-left: 20px;
     right:10px;
-    top:20px;
+    top:10px;
     }
 
 .media-date{
@@ -266,13 +266,17 @@ a:hover{
 ul li {
     list-style-type: none;
 }
+.post-list .col-md-6{
+    margin:0px;
+}
+
 
 .post-list .post:last-child {
     border: none
 }
 
-.post-list .post {
-    border-bottom: 1px solid #f0f0f0;
+.post-list .post ,.post-list .col-md-6 .post{ 
+    border-bottom: 1px solid #ddd;
 }
 
 .post {
@@ -303,7 +307,7 @@ ul li {
 .post .post-meta li {
     display: inline-block;
     margin-right: 10px;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .post .post-meta li i {
