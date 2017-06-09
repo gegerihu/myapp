@@ -6,7 +6,6 @@ html(lang="zh-CN")
 		meta(name="viewport",content="width=device-width, initial-scale=1")
 		meta(name="description",content="")
 		meta(name="author",content="")
-		link(rel="icon",href="../../favicon.ico")
 		title= title
 		link(rel="stylesheet",href="/css/bootstrap.min.css")
 		link(href='/css/theme.css', rel='stylesheet')
@@ -15,34 +14,46 @@ html(lang="zh-CN")
 		script(type='text/javascript', charset='utf-8', src='/ueditor/lang/zh-cn/zh-cn.js')
 		script(src="/js/jquery.min.js")
 		script(src="/js/bootstrap.min.js")
-		script(src="/js/load.js")
+		//- script(src="/js/load.js")
 	body(data-spy="scroll",data-target=".scrollspy")
 		.container
 			.content
 				h1 后台录入
-				form.form-horizontal(method='post' action='/admin')
-					.form-group
-						label.col-md-3.control-label(for='inputTitle') 新闻标题
-						.col-md-6
-							input#inputTitle.form-control(type='text' name='content[title]' value=content.title )
-					.form-group
-						label.col-md-3.control-label(for='inputAuthor') 发布者
-						.col-md-6
-							input#inputAuthor.form-control(type='text' name='content[author]' value= content.author)
-					.form-group
-						label.col-md-3.control-label(for='inputDescription') 新闻概述
-						.col-md-6
-							textarea#inputDescription.form-control(type='text' maxlength ='150' name='content[description]' value= content.description)
-					.form-group
-						label.col-md-3.control-label(for='inputMainContent') 内容
-						.col-md-6
-							//- textarea#inputMainContent.form-control(type='text'  name='content[mainContent]' value=content.mainContent)
-							script#editor(type='text/plain' style='height:500px' name='content[mainContent]' value=content.mainContent)
-							script.
-								var ue = UE.getEditor('editor');
-					.form-group
-						.col-md-3.col-md-offset-6
-							button.btn.btn-default(type='submit') 录入
-					
+				.row
+					.col-md-3
+					.col-md-9
+						form.form-horizontal(method='post' action='/admin')
+							.form-group
+								label.col-md-3.control-label(for='inputTitle') 标题
+								.col-md-9
+									input#inputTitle.form-control(type='text' name='content[title]' value=content.title )
+							.form-group
+								label.col-md-3.control-label(for='inputCategory') 类别
+								.col-md-3
+									select#inputCategory.form-control(name='content[category]' value=content.category )
+										option 新闻动态
+										option 教学活动
+										option 规章制度
+										option 学生作品
+										option 下载文档
+							.form-group
+								label.col-md-3.control-label(for='inputAuthor') 发布者
+								.col-md-9
+									input#inputAuthor.form-control(type='text' name='content[author]' value= content.author)
+							.form-group
+								label.col-md-3.control-label(for='inputDescription') 概述
+								.col-md-9
+									textarea#inputDescription.form-control(type='text' maxlength ='150' name='content[description]' value= content.description)
+							.form-group
+								label.col-md-3.control-label(for='inputMainContent') 内容
+								.col-md-9
+									//- textarea#inputMainContent.form-control(type='text'  name='content[mainContent]' value=content.mainContent)
+									script#editor(type='text/plain' style='height:500px' name='content[mainContent]' value=content.mainContent)
+									script.
+										var ue = UE.getEditor('editor');
+							.form-group
+								.col-md-3.col-md-offset-6
+									button.btn.btn-default(type='submit') 录入
+		include ../footer			
 		
 

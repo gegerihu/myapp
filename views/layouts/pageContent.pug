@@ -1,0 +1,21 @@
+.post-list
+    each item in contents     
+        article.post
+            .row
+                .col-xs-3.col-md-3
+                    img(src='/images/1.jpg', alt=item.title)
+                .col-xs-9.col-md-9
+                    h4.post-title
+                        a(href='/news/'+item._id, target='_blank') #{item.title}
+                    ul.post-meta
+                        li 
+                            span.glyphicon.glyphicon-time(aria-hidden='true') 
+                            |#{myDateFormat(item.meta.updateDate)}
+                        li 
+                            span.glyphicon.glyphicon-user(aria-hidden='true') 
+                            |由#{item.author}发布
+                        li 
+                            span.glyphicon.glyphicon-eye-open(aria-hidden='true')
+                            |#{item.clickNum}次阅览
+                    .post-content 
+                        | #{item.description}

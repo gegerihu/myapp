@@ -17,40 +17,74 @@ router.post('/signup',function(req,res){
 });
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('layouts/bootswatch', { title: '传媒系' ,
-        documentList:[{
-    title:'关于大大大所大大打算打算大的1',
-    img:'/images/1.jpg',
-    date: 222,
-    },
-    {
-    title:'关于大大大所大大打算打算大的2',
-    img:'/images/1.jpg',
-    date: 333,
-    },
-    {
-    title:'关于大大大所大大打算打算大的3',
-    img:'/images/1.jpg',
-    date: 444,
-    },
-    {
-    title:'关于大大大所大大打算打算大的4',
-    img:'/images/1.jpg',
-    date: 444,
-    }]
-});
-});
-
-router.get('/news', function(req, res) {
-    Content.fetch(function(err,contents){
+    var condition={
+        category:'新闻动态'
+            }
+    var options = {
+            sort: { 'meta.updateDate': -1 },        
+            lean: true,
+            offset: 0, 
+            limit: 8
+            };
+    Content.paginate(condition,options,function(err, result){
         if (err) {
-            console.log(err)};
-        res.render('layouts/news', { 
-            title: '新闻动态' ,
-            contents:contents
+            console.log(err);
+            }
+        res.render('layouts/bootswatch',{
+            title:'传媒系',
+            documentList: result.docs
+
         })
     })
+});
+    
+
+
+router.get('/news/page/:pageNum', function(req, res, next) {
+    var pageNum = req.params.pageNum
+    var options = {
+            sort: { 'meta.updateDate': -1 },        
+            lean: true,
+            offset: 20, 
+            limit: 6
+            };
+    options.offset=(pageNum*options.limit)-options.limit;
+    Content.paginate({}, options, function(err, result) {
+        if (err) {
+            console.log(err)};
+       // res.send(result);
+        res.render('layouts/pageContent', { 
+            title: '新闻动态' ,
+            contents:result.docs
+        }, function(err, html) {
+            res.send(html);
 })
+
+    })
+});
+
+
+router.get('/pagenumber', function(req, res) {
+    Content.count({}, function(err, result) { 
+        var pageNumber = {};
+        // console.log(result+"pagenumber");   
+        pageNumber.total = result;
+        res.send(pageNumber);
+    });
+});
+
+router.get('/news', function(req, res) {   
+        res.render('layouts/news', { 
+            title: '新闻动态' ,
+        })
+    })
+
+router.get('/sidebar', function(req, res) {   
+        res.render('layouts/newsidebar', { 
+            title: '新闻动态' ,
+        })
+    })
+
 
 
 router.get('/admin', function(req, res, next) {
@@ -62,14 +96,15 @@ router.get('/admin', function(req, res, next) {
 
 router.get('/news/:id', function(req, res, next) {
     var _id = req.params.id;
-    console.log(_id);
+    // console.log(_id);
     Content.update({_id:_id},{$inc:{clickNum:1}},function(err) {
     if(err) {
       console.log(err);
         }
     });
     Content.findById(_id,function(err,content){
-        console.log(content);
+        if (err) {
+        console.log(err);}
     res.render('layouts/details', { title: '新闻详情' ,
         content:content
         })
@@ -79,9 +114,13 @@ router.get('/news/:id', function(req, res, next) {
 router.post('/admin',function(req,res){
 
     // var title=req.body.content;
-    console.log(req.body);
+    // console.log(req.body);
     // res.send('OK');
     var contentObj= new Content(req.body.content);
+    if(contentObj.author === ''){
+            contentObj.author = '传媒系'
+        }
+
     contentObj.save(function(err){
             if(err){
                 res.end(err);

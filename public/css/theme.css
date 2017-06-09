@@ -27,7 +27,6 @@ body{
     font-size: 15px;
     border-bottom: 1px solid #ddd;
 }
-}
 
 .theme-dropdown .dropdown-menu {
   position: static;
@@ -147,7 +146,7 @@ body{
     position:relative; 
 }
 
-.h1, .h2, .h3, h1, h2, h3 {
+.h1, .h2, .h3{
     margin-top: 15px;
     margin-bottom: 10px;
 }
@@ -307,7 +306,7 @@ ul li {
 .post .post-meta li {
     display: inline-block;
     margin-right: 10px;
-    font-size: 13px;
+    font-size: 10px;
 }
 
 .post .post-meta li i {

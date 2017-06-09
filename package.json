@@ -11,13 +11,15 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
+    "express-paginate": "^0.2.2",
     "jade": "~1.11.0",
     "moment": "^2.18.1",
+    "mongoose-paginate": "^5.0.3",
     "morgan": "~1.8.1",
     "pug": "^2.0.0-rc.1",
     "serve-favicon": "~2.4.2",
     "shortid": "^2.2.8",
-    "ueditor": "^1.2.2"
+    "ueditor-nodejs": "^0.1.4"
   },
   "devDependencies": {
     "grunt": "^1.0.1",

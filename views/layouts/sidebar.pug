@@ -1,0 +1,74 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, shrink-to-fit=no, initial-scale=1')
+        meta(name='description', content='')
+        meta(name='author', content='')
+        title title
+        // Bootstrap Core CSS
+        link(href='css/bootstrap.min.css', rel='stylesheet')
+        // Custom CSS
+        link(href='css/simple-sidebar.css', rel='stylesheet')
+        link(href='css/theme.css', rel='stylesheet')
+        // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+        // WARNING: Respond.js doesn't work if you view the page via file://
+        //if lt IE 9
+            script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+            script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    body
+        #wrapper.toggled
+            // Sidebar
+            #sidebar-wrapper
+                ul.sidebar-nav
+                    li.sidebar-brand(style='border-bottom: 1px solid #ddd ; ')
+                        a(href='#')
+                            | 传媒系
+                    li.dropdown
+                        a.dropdown-toggle(href='', data-toggle='dropdown', role='button', aria-expanded='false') 文档管理
+                        ul.dropdown-menu(role='menu')
+                            li
+                                a(href='#') 
+                                    span.glyphicon.glyphicon-pencil
+                                    |文档录入
+                            li
+                                a(href='#')
+                                    span.glyphicon.glyphicon-list
+                                    |文档列表
+                            li
+                                a(href='#') 
+                                    span.glyphicon.glyphicon-download-alt
+                                    |上传文档
+                    li
+                        a(href='#') 实验室管理
+                    
+
+            // /#sidebar-wrapper
+            // Page Content
+           
+            .container-fluid
+                .row
+                    .col-lg-12
+                        h1 Simple Sidebar
+                        p
+                            | This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.
+                        p
+                            | Make sure to keep all page content within the 
+                            code #page-content-wrapper
+                            | .
+                        a#menu-toggle.btn.btn-default(href='#menu-toggle') Toggle Menu
+            // /#page-content-wrapper
+        // /#wrapper
+        // jQuery
+
+        include ../footer
+    script(src='js/jquery.min.js')
+        // Bootstrap Core JavaScript
+    script(src='js/bootstrap.min.js')
+        // Menu Toggle Script
+    script.
+        $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        });

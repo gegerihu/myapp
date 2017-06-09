@@ -13,11 +13,11 @@ block body
 					.carousel-caption
 						|....
 				.item
-					img(src='./images/banner2.jpg',alt='')
+					img(src='/images/banner2.jpg',alt='')
 					.carousel-caption
 						|....
 				.item
-					img(src='./images/banner3.jpg',alt='')
+					img(src='/images/banner3.jpg',alt='')
 					.carousel-caption
 						|....
 
@@ -39,20 +39,20 @@ block body
 								article.post(style='padding-bottom:10px')
 									.row
 										.col-xs-3.col-md-3
-											img(src=item.img, alt=item.title)
+											img(src='/images/1.jpg', alt=item.title)
 										.col-xs-9.col-md-9
 											h4.post-title
-												a(href='' target='_blank') #{item.title}
+												a(href='/news/'+item._id, target='_blank') #{item.title}
 											ul.post-meta
 												li 
-												span.glyphicon.glyphicon-time(aria-hidden='true') 
-												|#{item.date}
+													span.glyphicon.glyphicon-time(aria-hidden='true') 
+													|#{myDateFormat(item.meta.updateDate)}
 												li 
-												span.glyphicon.glyphicon-user(aria-hidden='true') 
-												|由#{item.date}发布
+													span.glyphicon.glyphicon-user(aria-hidden='true') 
+													|由#{item.author}发布
 												li 
-												span.glyphicon.glyphicon-eye-open(aria-hidden='true') 
-												|#{item.date}次阅览
+													span.glyphicon.glyphicon-eye-open(aria-hidden='true') 
+													|#{item.clickNum}次阅览
 
 
 							
