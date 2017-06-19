@@ -1,4 +1,4 @@
-@import "https://designmodo.github.io/Flat-UI/dist/css/flat-ui.min.css";
+/*@import "https://designmodo.github.io/Flat-UI/dist/css/flat-ui.min.css";*/
 /*@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css";*/
 @import "https://daneden.github.io/animate.css/animate.min.css";
 /*-------------------------------*/
@@ -11,7 +11,7 @@ body {
 body,
 html {
   height: 100%;
-  background-color: #583e7e;
+  /*//background-color: #583e7e;*/
 }
 .nav .open > a {
   background-color: transparent;
@@ -40,8 +40,8 @@ html {
   width: 220px;
 }
 #wrapper.toggled #page-content-wrapper {
-  /*margin-right: -220px;*/
-  position: absolute;
+  /*margin-right: 220px;
+  position: absolute;*/
 }
 #sidebar-wrapper {
   -moz-transition: all 0.5s ease;
@@ -87,6 +87,7 @@ html {
   position: absolute;
   top: 0;
   width: 220px;
+  font-size: 16px;
 }
 .sidebar-nav li {
   display: inline-block;
@@ -181,13 +182,15 @@ html {
 }
 .dropdown-menu li a{
   margin-left: 20px;
+  font-size: 14px;
 }
 .count {
+  float: left;
   position: absolute;
   color: #ffffff;
-  height: auto;
+  height: 20px;
   width: auto;
-  border-radius: 50%;
+  border-radius: 10px;
   padding: .4em .4em;
   /*top: 50%;*/
   bottom: auto;
@@ -196,8 +199,9 @@ html {
   left: auto;
   box-shadow: none;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 10px;
   text-align: center;
+  line-height: 12px;
 
   }
 /*-------------------------------*/
@@ -211,8 +215,8 @@ html {
   margin-left: 15px;
   width: 32px;
   position: fixed;
-  top: 60px; 
-  z-index: 999;
+  top: 10px; 
+  z-index: 1999;
 }
 .hamburger:hover {
   outline: none;
@@ -318,13 +322,13 @@ html {
 /* SOME DEMO STYLES - NOT REQUIRED */
 body,
 html {
-  background-color: #583e7e;
+  /*background-color: #583e7e;*/
 }
 body h1,
 body h2,
 body h3,
 body h4 {
-  color: rgba(255, 255, 255, 0.9);
+  color: #333;
 }
 body p,
 body blockquote {
@@ -332,8 +336,11 @@ body blockquote {
 }
 body a {
   color: rgba(255, 255, 255, 0.8);
-  text-decoration: underline;
+  
 }
 body a:hover {
   color: #fff;
+}
+.btn-xs{
+  margin-right:10px;
 }

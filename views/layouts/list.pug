@@ -1,0 +1,37 @@
+extends sidebar
+block ueditor
+    link(rel='stylesheet prefetch', href='https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css')
+block body
+    .container-fluid
+        .content
+            .row
+                .col-md-3.col-md-offset-3
+                    h3 文档列表
+            table#list.table.table-hover(cellspacing="0" width="100%")
+                thead
+                    tr
+                        th No.
+                        th 标题
+                        th 分类 
+                        th 录入时间
+                        th 点击数
+                        th 操作
+                tbody
+                    each item, i in contents
+                        tr(class='item-id-'+item._id)
+                            th(scope='row') #{i+1}
+                            td #{item.title}
+                            td #{item.category}
+                            td #{myDateFormat(item.meta.updateDate)}
+                            td #{item.clickNum}
+                            td: a.btn.btn-success.btn-xs(target="_blank", href='/news/'+item._id , role='button') 查看 
+                                a.btn.btn-primary.btn-xs(target="_blank", href='/sidebar/'+item._id , role='button') 编辑
+                                a.btn.btn-danger.btn-xs.del.disabled(role='button', data-id= item._id) 删除
+  
+
+
+        //- include ../footer   
+block scripts                           
+     script(src='https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js')
+     script(src='https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js')
+     script(src='/js/list.js')   

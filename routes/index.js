@@ -79,18 +79,25 @@ router.get('/news', function(req, res) {
         })
     })
 
-router.get('/sidebar', function(req, res) {   
-        res.render('layouts/newsidebar', { 
-            title: '新闻动态' ,
+router.get('/list', function(req, res) { 
+        Content.fetch(function(err,contents){ 
+        res.render('layouts/list', { 
+            title: '文档列表' ,
+            contents:contents
+            })
         })
-    })
+    }) 
 
-
+router.get('/sidebar', function(req, res, next) {
+  res.render('layouts/sidebar', { title: '后台管理' ,
+    content:{
+    }  
+    });
+});
 
 router.get('/admin', function(req, res, next) {
   res.render('layouts/admin', { title: '后台管理' ,
-    content:{
-    }  
+    content:{}  
     });
 });
 
@@ -110,60 +117,59 @@ router.get('/news/:id', function(req, res, next) {
         })
     })
 })
+router.get('/sidebar/:id', function(req, res, next) {
+    var _id = req.params.id;
+    // console.log(_id);
+    
+    Content.findById(_id,function(err,content){
+        // console.log(content);
+    res.render('layouts/edit', { title: '编辑内容' ,
+        content:content
+        })
+    })
+})
+
+router.post('/sidebar/:id', function(req, res, next) {
+    var _id = req.params.id;
+    //console.log(_id);
+    var contentObj= new Content(req.body.content);
+    Content.update({_id:_id},contentObj,function(err){
+         // console.log(this);
+    res.redirect('/list')
+    })
+})
+
 
 router.post('/admin',function(req,res){
-
-    // var title=req.body.content;
-    // console.log(req.body);
-    // res.send('OK');
     var contentObj= new Content(req.body.content);
     if(contentObj.author === ''){
             contentObj.author = '传媒系'
         }
-
     contentObj.save(function(err){
             if(err){
                 res.end(err);
             }else{
-                res.end("success");
+                res.redirect('/list');
             }
         });
 
-    // console.log(req.body);
-    // 
-    // var id = req.body.content._id,
-    //     contentObj = req.body.content,
-    //     _content;username
-    //     // if (id !== 'undefined') {
-    //     //     Content.findById(id, function(err, content){
-    //     //         if (err) {
-    //     //             console.log(err);                    
-    //     //         }
-    //     //         _content=_.extend(content, contentObj) ;
-    //     //         _content.save(function(err, content){
-    //     //             if (err) {
-    //     //                 console.log(err);
-    //     //             }
-    //     //             //res.redirect('/news/'+ content.id)
-    //     //             res.send('Scucess');
-    //     //         })
-    //     //     })
-    //     // }
-    //     // else {
-    //     _contnet = new Content({
-    //         title:contentObj.title,
-    //         author:contentObj.author,
-    //         description:contentObj.description,
-    //         mainContent:contentObj.mainContent
-    //     })
-    //     _content.save(function(err,content){
-    //         if (err) {
-    //                 console.log(err);
-    //             }
-    //         res.send('Success');
-    //            // res.redirect('/news/'+ content.id)
-    //     })
-    // //    }
+})
+
+//list delete
+router.delete('/list',function(req,res){
+    var id = req.query.id
+    if (id) {
+        Content.remove({_id:id},function(err, content){
+            if (err) {
+                console.log(err)
+            }
+            else{
+                res.json({
+                    success: 1
+                })
+            }
+        })
+    }
 })
 
 module.exports = router;
