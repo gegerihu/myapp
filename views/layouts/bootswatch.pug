@@ -39,7 +39,7 @@ block body
 								article.post(style='padding-bottom:10px')
 									.row
 										.col-xs-3.col-md-3
-											img(src='/images/1.jpg', alt=item.title)
+											img(src=item.sImg, alt=item.title)
 										.col-xs-9.col-md-9
 											h4.post-title
 												a(href='/news/'+item._id, target='_blank') #{item.title}

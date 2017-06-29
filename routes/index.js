@@ -2,7 +2,19 @@ var express = require('express');
 var _ =require('underscore');
 var router = express.Router();
 var Content = require("../models/Content");
-var  mongoose = require('mongoose');
+var mongoose = require('mongoose');
+var multer  =   require('multer');
+var storage =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './public/upload/smallimages/');
+  },
+  filename: function (req, file, callback) {
+    var fileFormat = (file.originalname).split(".");
+    callback(null, file.fieldname + '-' + Date.now()+ "." + fileFormat[fileFormat.length - 1]);
+  }
+});
+var upload = multer({ storage : storage}).single('smallimage');
+
 
 router.get('/signup', function(req, res, next) {
   res.render('layouts/signup', { title: '机构设置' });
@@ -145,15 +157,46 @@ router.post('/admin',function(req,res){
     if(contentObj.author === ''){
             contentObj.author = '传媒系'
         }
+
     contentObj.save(function(err){
             if(err){
                 res.end(err);
             }else{
-                res.redirect('/list');
+                id= contentObj._id
+                res.redirect('/news/'+id);
             }
         });
 
 })
+
+//upload image
+router.get('/uploadimg', function(req, res, next) {
+  res.render('layouts/upload', { title: '后台管理' ,content:{}
+    });
+});
+
+
+
+
+router.post('/uploadimg',function(req,res){
+    upload(req,res,function(err) {
+        console.log(req.file)
+        
+        if(err) {
+            return res.end("Error uploading file.");
+        }
+        if(req.file == undefined){
+            console.log('没有上传文件');
+            res.send('没有上传文件!');
+            // res.redirect('/uploadimg')
+        }        
+        else {
+            res.end(req.file.filename);
+        }
+    });
+});
+
+
 
 //list delete
 router.delete('/list',function(req,res){

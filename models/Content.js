@@ -23,13 +23,13 @@ var ContentSchema = new Schema({
     //sortPath : String, //存储所有父节点结构
    // tags : String, // 标签
    // keywords : String,
-   // sImg : { type: String, default: "/upload/images/defaultImg.jpg" }, // 文章小图
+    sImg : { type: String, default: "/images/1.jpg" }, // 文章小图
     description : String,
     
     meta:{
         createDate: { type: Date, default: Date.now },
         updateDate: { type: Date, default: Date.now }},// 更新时间
-    author: { type: String , default : '传媒系'}, // 文档作者
+    author: { type: String , default:'传媒系'}, // 文档作者
     //state : { type: Boolean, default: true },  // 是否在前台显示，默认显示
     //isTop : { type: Number, default: 0 },  // 是否推荐，默认不推荐 0为不推荐，1为推荐
     clickNum : { type: Number, default: 1 },

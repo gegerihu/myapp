@@ -19,9 +19,10 @@ $(document).ready(function () {
         trigger.addClass('is-closed');
         isClosed = true;
       }
-  }
-  
+    }
   $('[data-toggle="offcanvas"]').click(function () {
         $('#wrapper').toggleClass('toggled');
   });  
+
+
 });

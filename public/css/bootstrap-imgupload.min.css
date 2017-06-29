@@ -1,0 +1,7 @@
+/*!
+ * bootstrap-imgupload v2.0.0 2016/03/25
+ * https://github.com/egonolieux/bootstrap-imgupload
+ * Copyright 2016 Egon Olieux
+ * Released under the MIT license
+ */
+ .imgupload h3{padding-top:8px}.imgupload img{margin-top:10px}.imgupload .alert{margin-bottom:0;margin-top:10px}.imgupload .btn,.imgupload .btn:active{outline:0}.imgupload .btn-file{overflow:hidden;position:relative}.imgupload .btn-file input[type=file]{cursor:inherit;display:block;font-size:100px;min-height:100%;min-width:100%;opacity:0;outline:0;position:absolute;right:0;text-align:right;top:0}.imgupload .file-tab .btn:nth-of-type(2),.imgupload .url-tab{display:none}
