@@ -33,9 +33,9 @@ router.get('/', function(req, res, next) {
         category:'新闻动态'
             }
     var options = {
-            sort: { 'meta.updateDate': -1 },        
+            sort: { 'meta.updateDate': -1 },
             lean: true,
-            offset: 0, 
+            offset: 0,
             limit: 8
             };
     Content.paginate(condition,options,function(err, result){
@@ -49,15 +49,15 @@ router.get('/', function(req, res, next) {
         })
     })
 });
-    
+
 
 
 router.get('/news/page/:pageNum', function(req, res, next) {
     var pageNum = req.params.pageNum
     var options = {
-            sort: { 'meta.updateDate': -1 },        
+            sort: { 'meta.updateDate': -1 },
             lean: true,
-            offset: 20, 
+            offset: 20,
             limit: 6
             };
     options.offset=(pageNum*options.limit)-options.limit;
@@ -65,8 +65,8 @@ router.get('/news/page/:pageNum', function(req, res, next) {
         if (err) {
             console.log(err)};
        // res.send(result);
-        res.render('layouts/pageContent', { 
-            title: '新闻动态' ,
+        res.render('layouts/pageContent', {
+            // title: '新闻动态' ,
             contents:result.docs
         }, function(err, html) {
             res.send(html);
@@ -77,39 +77,39 @@ router.get('/news/page/:pageNum', function(req, res, next) {
 
 
 router.get('/pagenumber', function(req, res) {
-    Content.count({}, function(err, result) { 
+    Content.count({}, function(err, result) {
         var pageNumber = {};
-        // console.log(result+"pagenumber");   
+        // console.log(result+"pagenumber");
         pageNumber.total = result;
         res.send(pageNumber);
     });
 });
 
-router.get('/news', function(req, res) {   
-        res.render('layouts/news', { 
+router.get('/news', function(req, res) {
+        res.render('layouts/news', {
             title: '新闻动态' ,
         })
     })
 
-router.get('/list', function(req, res) { 
-        Content.fetch(function(err,contents){ 
-        res.render('layouts/list', { 
+router.get('/list', function(req, res) {
+        Content.fetch(function(err,contents){
+        res.render('layouts/list', {
             title: '文档列表' ,
             contents:contents
             })
         })
-    }) 
+    })
 
 router.get('/sidebar', function(req, res, next) {
   res.render('layouts/sidebar', { title: '后台管理' ,
     content:{
-    }  
+    }
     });
 });
 
 router.get('/admin', function(req, res, next) {
   res.render('layouts/admin', { title: '后台管理' ,
-    content:{}  
+    content:{}
     });
 });
 
@@ -132,7 +132,7 @@ router.get('/news/:id', function(req, res, next) {
 router.get('/sidebar/:id', function(req, res, next) {
     var _id = req.params.id;
     // console.log(_id);
-    
+
     Content.findById(_id,function(err,content){
         // console.log(content);
     res.render('layouts/edit', { title: '编辑内容' ,
@@ -181,7 +181,7 @@ router.get('/uploadimg', function(req, res, next) {
 router.post('/uploadimg',function(req,res){
     upload(req,res,function(err) {
         console.log(req.file)
-        
+
         if(err) {
             return res.end("Error uploading file.");
         }
@@ -189,7 +189,7 @@ router.post('/uploadimg',function(req,res){
             console.log('没有上传文件');
             res.send('没有上传文件!');
             // res.redirect('/uploadimg')
-        }        
+        }
         else {
             res.end(req.file.filename);
         }

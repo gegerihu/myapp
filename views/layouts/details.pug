@@ -6,17 +6,17 @@ block body
                 .col-md-12
                     .col-md-9
                         article.post
-                            h2.post-title
+                            h3.post-title.news
                                 | #{content.title}
-                            ul.post-meta
-                                li 
-                                    span.glyphicon.glyphicon-time(aria-hidden='true') 
+                            ul.post-meta.news
+                                li
+                                    span.glyphicon.glyphicon-time(aria-hidden='true')
                                     |#{myDateFormat(content.meta.updateDate)}
-                                li 
-                                    span.glyphicon.glyphicon-user(aria-hidden='true') 
+                                li
+                                    span.glyphicon.glyphicon-user(aria-hidden='true')
                                     |由#{content.author}发布
-                                li 
-                                    span.glyphicon.glyphicon-eye-open(aria-hidden='true') 
+                                li
+                                    span.glyphicon.glyphicon-eye-open(aria-hidden='true')
                                     |#{content.clickNum}次阅览
-                            .post-content 
-                                | !{content.mainContent}                                 
+                            .post-content
+                                | !{content.mainContent}
