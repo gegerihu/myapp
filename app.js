@@ -14,7 +14,7 @@ var app = express();
 
 mongoose.Promise = global.Promise;
 
-app.locals.moment = require('moment');
+// app.locals.moment = require('moment');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

@@ -1,6 +1,6 @@
 extends ../_bootstrap
 block body
-	.container
+	.container(style='min-height:500px')
 		.content
 			.row
 				.col-md-12
@@ -8,7 +8,7 @@ block body
 						h3.title-bg-line-bl
 							span 新闻动态
 						.post-list
-						//- 	each item in contents								
+						//- 	each item in contents
 						//- 		article.post
 						//- 			.row
 						//- 				.col-xs-3.col-md-3
@@ -17,16 +17,16 @@ block body
 						//- 					h4.post-title
 						//- 						a(href='/news/'+item._id, target='_blank') #{item.title}
 						//- 					ul.post-meta
-						//- 						li 
-						//- 							span.glyphicon.glyphicon-time(aria-hidden='true') 
+						//- 						li
+						//- 							span.glyphicon.glyphicon-time(aria-hidden='true')
 						//- 							|#{myDateFormat(item.meta.updateDate)}
-						//- 						li 
-						//- 							span.glyphicon.glyphicon-user(aria-hidden='true') 
+						//- 						li
+						//- 							span.glyphicon.glyphicon-user(aria-hidden='true')
 						//- 							|由#{item.author}发布
-						//- 						li 
-						//- 							span.glyphicon.glyphicon-eye-open(aria-hidden='true') 
+						//- 						li
+						//- 							span.glyphicon.glyphicon-eye-open(aria-hidden='true')
 						//- 							|#{item.clickNum}次阅览
-						//- 					.post-content 
+						//- 					.post-content
 						//- 						| #{item.description}
 					.col-md-9(style='text-align: center')
 						ul#pagination.pagination-sm

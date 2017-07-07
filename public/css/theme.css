@@ -1,6 +1,7 @@
 body{
     background: #ebebeb;
-    font-family:"Microsoft YaHei","宋体","黑体","Helvetica Neue",Helvetica,Arial,sans-serif;;
+    font-family:"Microsoft YaHei","宋体","黑体","Helvetica Neue",Helvetica,Arial,sans-serif;
+    /*height: 100%;*/
   /* Margin bottom by footer height */
 
 }

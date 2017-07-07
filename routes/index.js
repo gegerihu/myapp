@@ -57,7 +57,7 @@ router.get('/news/page/:pageNum', function(req, res, next) {
     var options = {
             sort: { 'meta.updateDate': -1 },
             lean: true,
-            offset: 20,
+            offset: 0,
             limit: 6
             };
     options.offset=(pageNum*options.limit)-options.limit;
@@ -129,7 +129,7 @@ router.get('/news/:id', function(req, res, next) {
         })
     })
 })
-router.get('/sidebar/:id', function(req, res, next) {
+router.get('/edit/:id', function(req, res, next) {
     var _id = req.params.id;
     // console.log(_id);
 
@@ -141,7 +141,7 @@ router.get('/sidebar/:id', function(req, res, next) {
     })
 })
 
-router.post('/sidebar/:id', function(req, res, next) {
+router.post('/edit/:id', function(req, res, next) {
     var _id = req.params.id;
     //console.log(_id);
     var contentObj= new Content(req.body.content);
@@ -186,8 +186,8 @@ router.post('/uploadimg',function(req,res){
             return res.end("Error uploading file.");
         }
         if(req.file == undefined){
-            console.log('没有上传文件');
-            res.send('没有上传文件!');
+            console.log('请选择上传文件！');
+            res.send('请选择上传文件!');
             // res.redirect('/uploadimg')
         }
         else {

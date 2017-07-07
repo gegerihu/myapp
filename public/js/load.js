@@ -13,3 +13,6 @@ $(function(){
             $('#first').addClass('baractive');
         };
     });
+$(function(){
+    $('.edui-upload-video').attr('preload','auto');
+});
