@@ -2,6 +2,7 @@ var express = require('express');
 var _ =require('underscore');
 var router = express.Router();
 var Content = require("../models/Content");
+var User = require("../models/User");
 var mongoose = require('mongoose');
 var multer  =   require('multer');
 var storage =   multer.diskStorage({
@@ -21,12 +22,12 @@ router.get('/signup', function(req, res, next) {
 });
 
 
-router.post('/signup',function(req,res){
-    var username = req.body.Email;
-    var password = req.body.Password;
-    console.log("post received: %s %s", username, password);
-    res.send('success!');
-});
+// router.post('/signup',function(req,res){
+//     var username = req.body.Email;
+//     var password = req.body.Password;
+//     console.log("post received: %s %s", username, password);
+//     res.send('success!');
+// });
 /* GET home page. */
 router.get('/', function(req, res, next) {
     var condition={
@@ -213,6 +214,67 @@ router.delete('/list',function(req,res){
             }
         })
     }
+})
+
+//signup
+router.post('/signup',function(req,res){
+
+    var password=req.body.user.password;
+    var confirmPwd=req.body.user.confirmPwd;
+    var name= req.body.user.userName;
+    var email= req.body.user.email;
+    var errors;
+    User.find({$or:[{'userName':name},{'email':email}]},function(err, docs){
+
+    if (docs.length > 0) {
+        errors = '用户名或邮箱已注册,请重新填写！';
+    }
+    if (password!==confirmPwd)  {
+        errors='密码未匹配，请重新输入!';
+    }
+    if (errors) {
+        res.end(errors);
+    }
+    else {
+        var user= new User(req.body.user);
+        console.log(user);
+        user.save(function(err){
+            // console.log(err);
+            if(err){
+                res.end(err);
+            }else{
+                console.log('success!');
+                res.end('注册成功!');
+                }
+            });
+            }
+        })
+     });
+//login
+router.post('/login',function(req,res){
+    var name=req.body.user.userName;
+        password=req.body.user.password;
+    console.log(name);
+    User.findOne({userName:name},function(err, user){
+        if (!user) {
+            res.end('用户不存在，请注册！');
+        }
+        else{
+            user.comparePassword(password,function(err,isMatch) {
+
+              // 密码匹配
+              if(isMatch) {
+                // 验证码存在
+                    req.session.user = user;                // 将当前登录用户名保存到session中
+                    return res.end('登录成功！');              // 登录成功
+
+              }else {
+                // 账户名和密码不匹
+                return res.end('用户名或密码错误！');
+              }
+            });
+        }
+    })
 })
 
 module.exports = router;

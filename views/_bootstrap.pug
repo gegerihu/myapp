@@ -82,11 +82,11 @@ html(lang="zh-CN")
 
 					ul.nav.navbar-nav.navbar-right(style='font-size:10px')
 						li
-							a(href='#', data-toggle='modal', data-target='#signup-modal')
+							a(href='', data-toggle='modal', data-target='#signup-modal')
 								span.glyphicon.glyphicon-user
 								|  注册
 						li
-							a(href='#', data-toggle='modal', data-target='#login-modal')
+							a(href='', data-toggle='modal', data-target='#login-modal')
 								span.glyphicon.glyphicon-log-in
 								|  登录
 			#login-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true', style='display: none;')
@@ -99,15 +99,17 @@ html(lang="zh-CN")
 									span.glyphicon.glyphicon-remove(role='button' data-dismiss='modal')
 							.panel-body(style='padding-top:30px')
 								#login-alert.alert.alert-danger.col-sm-12(style='display:none')
-								form#loginform.form-horizontal(role='form')
+								form#loginform.form-horizontal(method='post' action='/login')
+									#login-notice.alert.alert-danger.hide
+										| 错误提示！
 									.input-group(style='margin-bottom: 25px')
 										span.input-group-addon
 											i.glyphicon.glyphicon-user
-										input#login-username.form-control(type='text', name='username', value='', placeholder='username or email')
+										input#login-username.form-control(type='text', name='user[userName]', value='', placeholder='用户名')
 									.input-group(style='margin-bottom: 15px')
 										span.input-group-addon
 											i.glyphicon.glyphicon-lock
-										input#login-password.form-control(type='password', name='password', placeholder='password')
+										input#login-password.form-control(type='password', name='user[password]', placeholder='密码')
 									.input-group
 										.checkbox
 											label
@@ -116,14 +118,14 @@ html(lang="zh-CN")
 									.form-group(style='margin-top:10px')
 										// Button
 										.col-sm-4.col-sm-offset-2.controls
-											a#btn-login.btn.btn-success(href='#') 登录
+											button#btn-login.btn.btn-info(type='submit') 登录
 										.col-sm-4.controls
 											a(href='#') 忘记密码
 									.form-group
 										.col-md-12.control
 											div(style='border-top: 1px solid#888; padding-top:15px; font-size:85%')
 												| 还没有账户!
-												a(href='#', onclick="$('#loginbox').hide(); $('#signupbox').show()")
+												a#switch(role='button')
 													|     点击注册
 			#signup-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true', style='display: none;')
 				.container
@@ -134,33 +136,45 @@ html(lang="zh-CN")
 								div(style='float:right; font-size: 100%; position: relative; top:-20px')
 									span.glyphicon.glyphicon-remove(role='button' data-dismiss='modal')
 							.panel-body
-								form#signupform.form-horizontal(role='form')
+								form#signupform.form-horizontal(method='post' action='/signup' )
+									#signup-notice.alert.alert-danger.hide
+										| 错误提示！
 									.form-group
 										label.col-md-3.control-label(for='username') 用户名
 										.col-md-9
-											input.form-control(type='text', name='firstname', placeholder='用户名')
-									.form-group
-										label.col-md-3.control-label(for='name') 姓名
-										.col-md-9
-											input.form-control(type='text', name='name', placeholder='姓名')
-									.form-group
-										label.col-md-3.control-label(for='email') 邮箱
-										.col-md-9
-											input.form-control(type='text', name='email', placeholder='邮箱地址')
+											input.form-control(type='text', name='user[userName]', placeholder='用户名' required)
 									.form-group
 										label.col-md-3.control-label(for='password') 密码
 										.col-md-9
-											input.form-control(type='password', name='passwd', placeholder='密码')
+											input.form-control(type='password', name='user[password]', placeholder='密码' required)
 									.form-group
-										label.col-md-3.control-label(for='icode') 确认密码
+										label.col-md-3.control-label(for='checkpw') 确认密码
 										.col-md-9
-											input.form-control(type='text', name='icode', placeholder='确认密码')
+											input.form-control(type='password', name='user[confirmPwd]', placeholder='确认密码' required)
+									.form-group
+										label.col-md-3.control-label(for='name') 姓名
+										.col-md-9
+											input.form-control(type='text', name='user[name]', placeholder='姓名' required)
+									.form-group
+										label.col-md-3.control-label(for='email') 邮箱
+										.col-md-9
+											input.form-control(type='email', name='user[email]', placeholder='邮箱地址' required)
+									.form-group
+										label.col-md-3.control-label(for='calss') 年级专业
+										.col-md-9
+											input.form-control(type='text', name='user[class]', placeholder='年级专业' required)
+									.form-group
+										label.col-md-3.control-label(for='studentId') 学号
+										.col-md-9
+											input.form-control(type='text', name='user[studentId]', placeholder='学号' required)
+									.form-group
+										label.col-md-3.control-label(for='phone') 电话号码
+										.col-md-9
+											input.form-control(type='text', name='user[phoneNum]', placeholder='电话号码' required)
 									.form-group
 										// Button
 										.col-md-offset-3.col-md-9
-											button#btn-signup.btn.btn-info(type='button')
-												i.icon-hand-right
-												| 提交
+											button#btn-signup.btn.btn-info(type='submit') 提交
 
 
 		block body
@@ -168,6 +182,7 @@ html(lang="zh-CN")
 
 		script(src="/js/jquery.min.js")
 		script(src="/js/bootstrap.min.js")
+		script(src='/js/jquery.form.min.js')
 		script(src="/js/load.js")
 		//- script(src="/js/pagination.js")
 	block scripts

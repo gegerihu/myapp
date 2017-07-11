@@ -3,6 +3,8 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');              // session依赖cookie模块
+var mongoStore = require('connect-mongo')(session);
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var moment = require('moment');
@@ -28,6 +30,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
+
+app.use(session({
+  secret:'myapp',                          // 设置的secret字符串，来计算hash值并放在cookie中
+  resave: false,                                    // session变化才进行存储
+  saveUninitialized: true,
+  // 使用mongo对session进行持久化，将session存储进数据库中
+  store: new mongoStore({
+    url: 'mongodb://127.0.0.1:27017/myapp',          // 本地数据库地址
+    collection: 'sessions'                          // 存储到mongodb中的字段名
+  })
+}));
 
 var ueditor = require('ueditor-nodejs');
 app.use('/ueditor/ue', ueditor(

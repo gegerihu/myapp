@@ -44,7 +44,6 @@ $(function() {
           }
       $("#status").empty().text("上传中...");
       $(this).ajaxSubmit({
-
       error: function(xhr) {
       status('Error: ' + xhr.status);
       },
