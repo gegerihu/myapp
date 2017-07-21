@@ -1,0 +1,114 @@
+extends sidebar
+block ueditor
+block body
+    .container-fluid
+        .content
+            .panel.panel-info(style='margin-top: 1em')
+                .panel-heading
+                    h3.panel-title(style='text-align:center') 用户信息详情
+                .panel-body
+                    .panel.panel-success
+                        .panel-body.appdetail(style='padding: 0px 15px 0 15px;')
+                            form#editprofile.form-horizontal(method='post' action='/manage/user/'+ user._id +'/editprofile' style='margin-top:20px')
+                                #editprofile-notice.alert.alert-danger.col-md-offset-3.col-md-9.hide
+                                    | 错误提示！
+                                .form-group
+                                    label.col-md-3.control-label(for='username') 用户名
+                                    .col-md-6
+                                        input.form-control(type='text', name='user[userName]', placeholder='用户名' required  readonly value=user.userName)
+                                .form-group
+                                    label.col-md-3.control-label(for='username') 用户ID
+                                    .col-md-6
+                                        input.form-control(type='text', placeholder='用户名' required  readonly value=user._id)
+                                .form-group
+                                    label.col-md-3.control-label(for='name') 姓名
+                                    .col-md-6
+                                        input.form-control(type='text', name='user[name]', placeholder='姓名' required value=user.name)
+                                .form-group
+                                    label.col-md-3.control-label(for='email') 邮箱
+                                    .col-md-6
+                                        input.form-control(type='email', name='user[email]', placeholder='邮箱地址' required value=user.email)
+                                .form-group
+                                    label.col-md-3.control-label(for='calss') 年级专业
+                                    .col-md-6
+                                        input.form-control(type='text', name='user[class]', placeholder='年级专业' required value=user.class)
+                                .form-group
+                                    label.col-md-3.control-label(for='studentId') 学号
+                                    .col-md-6
+                                        input.form-control(type='text', name='user[studentId]', placeholder='学号' required value=user.studentId)
+                                .form-group
+                                    label.col-md-3.control-label(for='phone') 电话号码
+                                    .col-md-6
+                                        input.form-control(type='text', name='user[phoneNum]', placeholder='电话号码' required value=user.phoneNum)
+                                .form-group
+                                    label.col-md-3.control-label(for='phone') 用户身份
+                                    .col-md-6
+                                        if user.status === 1
+                                            input.form-control(type='text', required value='管理员')
+                                        else
+                                            input.form-control(type='text', placeholder='电话号码' required readonly value='学生用户')
+                                .form-group
+                                    label.col-md-3.control-label(for='app') 借用申请数
+                                    .col-md-6
+                                        input.form-control(type='text', name='user[appNum]', placeholder='借用申请数' required readonly value= count)
+                                .form-group
+                                    // Button
+                                    .col-md-offset-3.col-md-9
+                                        button#btn-signup.btn.btn-info(type='submit') 确认修改
+            .panel.panel-info(style='margin-top: 1em')
+                .panel-heading
+                    h3.panel-title(style='text-align:center') 修改密码
+                .panel-body
+                    .row
+                        #notice.alert.alert-danger.col-md-offset-3.col-md-6.hide | 错误提示！
+                    form#resetpwd.form-horizontal(method='post' action='/manage/user/'+ user._id +'/resetpwd' )
+                        #resetpwd-notice.alert.alert-danger.col-md-offset-3.col-md-9.hide| 错误提示！
+                        .form-group
+                            label.col-md-3.control-label(for='password') 新密码
+                            .col-md-3
+                                input.form-control(type='password', name='newpassword', placeholder='密码' required)
+                        .form-group
+                            label.col-md-3.control-label(for='checkpwd') 确认新密码
+                            .col-md-3
+                                input.form-control(type='password', name='confirmPwd', placeholder='确认新密码' required)
+                        .form-group
+                            // Button
+                            .col-md-offset-3.col-md-9
+                                button#btn-signup.btn.btn-info(type='submit') 修改密码
+block scripts
+    script(src='/js/jquery.form.min.js')
+    script(src="/js/icheck.min.js")
+    script.
+        $(document).ready(function(){
+          $('input').iCheck({
+            checkboxClass: 'icheckbox_square-red',
+            radioClass: 'iradio_square-red',
+            increaseArea: '20%' // optional
+          });
+        $('#editprofile').submit(function(){
+        $(this).ajaxSubmit({
+            error: function(xhr) {
+            status('Error: ' + xhr.status);
+            },
+            success: function(response) {
+            console.log(response);
+                //$("#resetpwd").empty();
+                $("#editprofile-notice").empty().removeClass('hide').text(response);
+                }
+             });
+            return false;
+          });
+          $('#resetpwd').submit(function(){
+          $(this).ajaxSubmit({
+              error: function(xhr) {
+              status('Error: ' + xhr.status);
+              },
+              success: function(response) {
+              console.log(response);
+                  //$("#resetpwd").empty();
+                  $("#resetpwd-notice").empty().removeClass('hide').text(response);
+                  }
+               });
+              return false;
+            });
+        });

@@ -1,0 +1,57 @@
+doctype html
+html(lang="zh-CN")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport",content="width=device-width, initial-scale=1 ,height=device-height")
+        meta(name="description",content="")
+        meta(name="author",content="")
+        title= title
+        link(rel="stylesheet",href="/css/bootstrap.min.css")
+        link(href='/css/theme.css', rel='stylesheet')
+
+    body(data-spy="scroll",data-target=".scrollspy")
+        .container
+            #loginbox.mainbox.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2(style='margin-top:250px;')
+                        .panel.panel-info
+                            .panel-heading
+                                .panel-title 登录
+                            .panel-body(style='padding-top:30px')
+                                form#loginform.form-horizontal(method='post' action='/adminlogin')
+                                    #login-notice.alert.alert-danger.hide
+                                        | 错误提示！
+                                    .input-group(style='margin-bottom: 25px')
+                                        span.input-group-addon
+                                            i.glyphicon.glyphicon-user
+                                        input#login-username.form-control(type='text', name='user[userName]', value='', placeholder='用户名')
+                                    .input-group(style='margin-bottom: 15px')
+                                        span.input-group-addon
+                                            i.glyphicon.glyphicon-lock
+                                        input#login-password.form-control(type='password', name='user[password]', placeholder='密码')
+                                    .form-group(style='margin-top:10px')
+                                        // Button
+                                        .col-sm-4.col-sm-offset-2.controls
+                                            button#btn-login.btn.btn-info(type='submit') 登录
+        script(src="/js/jquery.min.js")
+        script(src="/js/bootstrap.min.js")
+        script(src='/js/jquery.form.min.js')
+        script.
+            $(function(){
+                  $('#loginform').submit(function(){
+                    $(this).ajaxSubmit({
+                      error: function(xhr) {
+                      status('Error: ' + xhr.status);
+                      },
+                      success: function(response) {
+                        console.log(response);
+                        if(response=='登录成功!'){
+                            $("#login-notice").empty().removeClass('hide').text(response);
+                            window.location.href='/manage';
+                        }else{
+                            $("#login-notice").empty().removeClass('hide').text(response);
+                        }
+                        }
+                     });
+                    return false;
+                  });
+             });

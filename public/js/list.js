@@ -1,20 +1,20 @@
 $(function(){
     $('#list').DataTable({"iDisplayLength": 25});
-    })
-$(function(){
-    $('.del').click(function(e){
+    console.log('done');
+    $("#list").on("click",".contentdel",function(e){
+        console.log('done');
         var target = $(e.target);
-        var id = target.data("id")
-        var tr = $('.item-id-'+id)
+        var id = target.data("id");
+        var tr = $('.item-id-'+id);
+        console.log('done');
         $.ajax({
             type: 'DELETE',
-            url:'/list?id='+id
+            url:'/manage/content/list?id=' + id
         })
         .done(function(result){
-            if (result.success === 1) {
-                if (tr.length> 0) {
+            console.log('done')
+            if (result.success === 1&&tr) {
                     tr.remove()
-                }
             }
         })
     })

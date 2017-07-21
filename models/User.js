@@ -17,17 +17,14 @@ var UserSchema = new Schema({
     // qq : Number,
     name:  String,
     phoneNum : Number,
+    appNum : {type: Number, default: 0},
     studentId: Number,
     gender : String,
     class : String,
-
+    state: {type:Boolean , default:false},
     date: { type: Date, default: Date.now()},
 
-    group: { type: String, default: "0" },
-    application:{
-        type: String,
-        ref :'Application'
-    }
+    status: { type: String, default: '0' },
 
 });
 

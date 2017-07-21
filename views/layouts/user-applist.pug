@@ -1,0 +1,46 @@
+extends ../_bootstrap
+block stylesheets
+    //- link(href='http://cdn.bootcss.com/twitter-bootstrap/2.2.2/css/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet prefetch', href='https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css')
+block body
+    .container(style='min-height:500px')
+        .content
+            .panel.panel-info(style='margin-top: 1em')
+                .panel-heading
+                    h3.panel-title(style='text-align:center') 我的申请
+                .panel-body
+                    table#list.table.table-hover(cellspacing="0" width="100%")
+                        thead
+                            tr
+                                th 申请时间
+                                th 借用设备
+                                th 借用日期
+                                th 归还日期
+                                th 申请状态
+                        tbody
+                            each item in forms
+                                tr.clickable-row(class='item-id-'+item._id)
+                                    td
+                                        a(href='/user/appdetail/'+item._id) #{moment(item.date).format('YYYY-MM-DD')}
+                                    td #{item.devices}
+                                    td #{item.outTime}
+                                    td #{item.returnTime}
+                                    td
+                                        - var state = item.state
+                                        case state
+                                            when 0
+                                                btn.btn-success.btn-sm 同意借出
+                                            when 1
+                                                btn.btn-warning.btn-sm 不同意
+                                            when 2
+                                                btn.btn-info.btn-sm 到期已还
+                                            when 3
+                                                btn.btn-danger.btn-sm 过期未还
+                                            when 4
+                                                btn.btn-primary.btn-sm 申请中
+            else
+                h3  请先登录！
+block scripts
+    script(src='https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js')
+    script(src='https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js')
+    script(src='/js/applist.js')

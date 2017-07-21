@@ -65,13 +65,13 @@ html {
   width: 100%;
 }
 .main-header{
-  position:fixed;  
+  position:fixed;
   top:0;
   width:100%;
   height:50px;
   background: #3e454c;
   z-index: 1000;
-  
+
 }
 /*-------------------------------*/
 /*     Sidebar nav styles        */
@@ -181,7 +181,7 @@ html {
   line-height: 44px;
 }
 .dropdown-menu li a{
-  margin-left: 20px;
+  margin-left: 0px;
   font-size: 14px;
 }
 .count {
@@ -215,7 +215,7 @@ html {
   margin-left: 15px;
   width: 32px;
   position: fixed;
-  top: 10px; 
+  top: 10px;
   z-index: 1999;
 }
 .hamburger:hover {
@@ -356,11 +356,62 @@ body blockquote {
 }
 body a {
   color: rgba(255, 255, 255, 0.8);
-  
+
 }
 body a:hover {
   color: #fff;
 }
 .btn-xs{
   margin-right:10px;
+}
+.appdetail .row .col-md-3
+{
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    border-color: #d6e9c6
+}
+.appdetail .row .col-md-9
+{
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    border-color: #d6e9c6
+}
+.appdetail h5{
+  font-size: 16px;
+}
+.appdetail h4{
+  font-size: 14px;
+  color: #337ab7;
+  height:17px;
+}
+.navbar-default .navbar-nav>li>a{
+    color: #ddd;
+}
+.navbar-default .navbar-nav>li>a:hover {
+    color: #ddd;
+    background-color: #402d5c;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    color: #ddd;
+    background-color: #402d5c;
+}
+.navbar-nav>li>.dropdown-menu {
+    background-color:#3e454c;
+    color: #ddd;
+    margin-top: 0;
+    border:0;
+    padding:0px;
+}
+.dropdown-menu>li>a {
+    color: #ddd;
+}
+.dropdown-menu>li>a:hover{
+    color: #ddd;
+    background-color: #402d5c;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.badge {
+  background-color: #ff7e66;
+  float: right;
 }

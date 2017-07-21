@@ -15,74 +15,93 @@ html
         //link(rel='stylesheet', href='/css/theme.css')
         block ueditor
     body(data-spy="scroll",data-target=".scrollspy")
-        header.main-header              
+        header.main-header
+            nav.navbar.navbar-default.navbar-fixed-top(style='background-color: #3e454c;')
+                if  user
+                    ul.nav.navbar-nav.navbar-right(style='font-size:15px;float: right!important;position: relative ; margin-right:20px;')
+                        li
+                            a(href='/manage/newapplication', data-toggle='modal', data-target='#signup-modal')
+                                i.fa.fa-fw.fa-bell
+                                span#total.badge
+                        li.dropdown
+                            a.dropdown-toggle(href='', data-toggle='dropdown', role='button', aria-expanded='false' style='color: #ddd;')
+                                i.fa.fa-fw.fa-user
+                                | #{user.userName}
+                                span.caret
+                            ul.dropdown-menu(role='menu')
+                                li
+                                    a(href='/user/editprofile') 修改信息
+                                li
+                                    a(href='/user/applist') 我的申请
+                                li
+                                    a(href='/logout') 退出
         #wrapper.toggled
             nav#sidebar-wrapper.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
                     ul.nav.sidebar-nav
                         li.sidebar-brand
-                            a(href='/')
+                            a(href='/' target="_blank")
                                 | 传媒系
                         li
                             a(href='#')
                                 i.fa.fa-fw.fa-home
                                 |  Home
                         li.dropdown
-                            a.dropdown-toggle(href='#', data-toggle='dropdown')
+                            a.dropdown-toggle(href='#', data-toggle='dropdown' aria-expanded='true')
                                 i.fa.fa-fw.fa-folder-open
-                                |  文档管理 
+                                |  文档管理
                                 span.caret
                             ul.dropdown-menu(role='menu')
                                 li
-                                    a(href='/admin') 
+                                    a(href='/manage/content/addnew' )
                                         i.fa.fa-fw.fa-pencil-square-o
                                         |文档录入
                                 li
-                                    a(href='/list') 
+                                    a(href='/manage/content/list')
                                         i.fa.fa-fw.fa-list-ul
                                         |文档列表
                                 li
-                                    a(href='#') 
+                                    a(href='/manage/content/carousel')
                                         i.fa.fa-fw.fa-upload
-                                        |文档上传
+                                        |图片上传
                         li.dropdown
                             a.dropdown-toggle(href='#', data-toggle='dropdown')
                                 i.fa.fa-fw.fa-cogs
-                                |  实验室管理 
+                                |  实验室管理
                                 span.caret
                             ul.dropdown-menu(role='menu')
                                 li
-                                    a(href='#') 
-                                        i.fa.fa-fw.fa-bell       
+                                    a(href='/manage/newapplication')
+                                        i.fa.fa-fw.fa-bell
                                         |借出申请
-                                        span.count 10
+                                        span.badge.hide
                                 li
-                                    a(href='#') 
+                                    a(href='/manage/application/list')
                                         i.fa.fa-fw.fa-list-ul
                                         |申请列表
                                 li
-                                    a(href='#') 
+                                    a(href='#')
                                         i.fa.fa-fw.fa-exclamation-triangle
                                         |到期未还
-                                        span.count 10
+                                        span.badge.hide
                         li.dropdown
                             a.dropdown-toggle(href='#', data-toggle='dropdown')
                                 i.fa.fa-fw.fa-address-book-o
-                                |  用户管理 
+                                |  用户管理
                                 span.caret
                             ul.dropdown-menu(role='menu')
                                 li
-                                    a(href='#') 
+                                    a(href='/manage/user/new')
                                         i.fa.fa-fw.fa-user
                                         |新增用户
                                 li
-                                    a(href='#') 
+                                    a(href='/manage/user/list')
                                         i.fa.fa-fw.fa-list-ul
                                         |用户列表
-                                li
-                                    a(href='#') 
-                                        i.fa.fa-fw.fa-exclamation-triangle
-                                        |权限管理
-                                                       
+                                //- li
+                                //-     a(href='#')
+                                //-         i.fa.fa-fw.fa-exclamation-triangle
+                                //-         |权限管理
+
 
             // /#sidebar-wrapper
             // Page Content
@@ -91,10 +110,10 @@ html
                     span.hamb-top
                     span.hamb-middle
                     span.hamb-bottom
-            block body        
-        //- include ../footer   
-    
+            block body
+        //- include ../footer
+
         script(src="/js/jquery.min.js")
         script(src="/js/bootstrap.min.js")
         script(src='/js/sidebar.js')
-    block scripts    
+    block scripts

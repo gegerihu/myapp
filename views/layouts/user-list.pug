@@ -1,0 +1,38 @@
+extends sidebar
+block ueditor
+    link(rel='stylesheet prefetch', href='https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css')
+block body
+    .container-fluid
+        .content
+            .panel.panel-primary
+                    .panel-heading
+                        h3.panel-title(style='text-align:center') 用户列表
+                    .panel-body
+                        table#list.table.table-hover(cellspacing="0" width="100%")
+                            thead
+                                tr
+                                    th No.
+                                    th 姓名
+                                    th 用户名
+                                    th 创建时间
+                                    th 年级专业
+                                    th 操作
+                            tbody
+                                each item, i in users
+                                    tr(class='item-id-'+item._id)
+                                        th(scope='row') #{i+1}
+                                        td #{item.name}
+                                        td #{item.userName}
+                                        td #{myDateFormat(item.date)}
+                                        td #{item.class}
+                                        td: a.btn.btn-success.btn-xs(target="_blank", href='/manage/user/'+item._id , role='button') 查看
+                                            a.btn.btn-primary.btn-xs(target="_blank", href='/manage/user/'+ item._id+'/applist', role='button') 借出申请
+                                            a.btn.btn-danger.btn-xs.del(role='button', data-id= item._id) 删除
+
+
+
+        //- include ../footer
+block scripts
+    script(src='https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js')
+    script(src='https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js')
+    script(src='/js/user-list.js')

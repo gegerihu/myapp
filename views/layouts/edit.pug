@@ -26,7 +26,7 @@ block body
                     #image.thumbnail
                         img(src=content.sImg)
             .row
-            form.form-horizontal(method='post' action='/edit/'+content._id)
+            form.form-horizontal(method='post' action='/manage/edit/'+content._id)
                 if content._id
                     input(type="hidden" name="content[_id]" value=content._id)
                 if content.clickNum

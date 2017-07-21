@@ -16,14 +16,15 @@ var app = express();
 
 mongoose.Promise = global.Promise;
 
-// app.locals.moment = require('moment');
+app.locals.moment = require('moment');
+moment.locale('zh-cn');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.set('view options', { debug: true });
 mongoose.connect('mongodb://127.0.0.1:27017/myapp');
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', '/icon/chuanmeixi.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -52,7 +53,11 @@ app.use('/ueditor/ue', ueditor(
     staticPath: path.join(__dirname, 'public'), //一般固定的写法，静态资源的目录，如果是bcs，可以不填
     //dynamicPath: dynamicPath//动态目录，以/开头，bcs填写buckect名字，开头没有/.路径可以根据req动态变化，可以是一个函数，function(req) { return '/xx'} req.query.action是请求的行为，uploadimage表示上传图片，具体查看config.json.
 }));
-
+app.use(function(req,res,next){
+    app.locals.user= req.session.user;
+    app.locals.adminlogined =req.session.adminlogined;
+    next();
+  });
 app.use('/home', index);
 app.use('/', index);
 app.use('/users', users);

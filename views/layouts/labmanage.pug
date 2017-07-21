@@ -1,0 +1,72 @@
+extends ../_bootstrap
+block stylesheets
+    //- link(href='http://cdn.bootcss.com/twitter-bootstrap/2.2.2/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/css/bootstrap-datetimepicker.css', rel='stylesheet')
+block body
+    .container(style='min-height:500px')
+        .content
+            if user
+                .panel.panel-info(style='margin-top: 1em')
+                    .panel-heading
+                        h3.panel-title(style='text-align:center') 实验室及仪器设备借用须知
+                    .panel-body
+                        ol
+                            li 申请人必须如实注册用户信息，正确填写各项信息。
+                            li 申请人必须按照借用日期到仪器设备库领用所借物品，逾期作废。
+                            li 申请人必须如期归还所借仪器设备或实验室钥匙，逾期不还者列入黑名单，不得再借用实验室及设备。
+                            li 不得损坏所借仪器设备，如有损坏照价赔偿。
+                            li 遵守各实验室管理制度，如发现违反者将不得再借用实验室。
+                .panel.panel-info
+                    .panel-heading
+                        h2.panel-title(style='text-align:center') 实验室及仪器设备借用申请表
+                    #notice.panel-body
+
+                        form#application.form-horizontal(method='post' action='/application')
+                            .form-group
+                                label.col-md-3.control-label(for='applicant') 申请人
+                                .col-md-6
+                                    input#applicant.form-control(type='text'  readonly='ture' name='application[applicant]' required value=user.name)
+                            .form-group.hide
+                                label.col-md-3.control-label(for='user') 申请人ID
+                                .col-md-6
+                                    input#userName.form-control(type='text'  readonly='ture' name='application[user]' required value=user._id)
+                            .form-group
+                                label.col-md-3.control-label(for='devices') 借用设备或实验室
+                                .col-md-6
+                                    input#devices.form-control(type='text' name='application[devices]' required)
+                            .form-group
+                                label.col-md-3.control-label(for='outTime') 借用日期
+                                .col-md-6
+                                    .input-group.date.form_datetime(data-date='', data-date-format='', data-link-field='outTime' required)
+                                        input.form-control(size='16', type='text', name='application[outTime]' readonly required)
+                                        //- span.input-group-addon
+                                        //-     span.glyphicon.glyphicon-remove
+                                        span.input-group-addon
+                                            span.glyphicon.glyphicon-calendar
+                            .form-group
+                                label.col-md-3.control-label(for='returnTime') 归还日期
+                                .col-md-6
+                                    .input-group.date.form_datetime(data-date='', data-date-format='', data-link-field='returnTime' required)
+                                        input.form-control(size='16', type='text',name='application[returnTime]' readonly required)
+                                        //- span.input-group-addon
+                                        //-     span.glyphicon.glyphicon-remove
+                                        span.input-group-addon
+                                            span.glyphicon.glyphicon-calendar
+                            .form-group
+                                label.col-md-3.control-label(for='reasons') 借用事由
+                                .col-md-6
+                                    textarea#reasons.form-control(type='text' name='application[reasons]' required)
+                            .form-group
+                                label.col-md-3.control-label(for='advisor') 指导老师
+                                .col-md-6
+                                    input#advisor.form-control(type='text' name='application[advisor]' required)
+                            .form-group
+                                .col-md-3.col-md-offset-3
+                                    button.btn.btn-primary(type='submit' style='text-al') 提交申请
+
+            else
+                h3  请先登录！
+block scripts
+    script(type='text/javascript', src='/js/bootstrap-datetimepicker.min.js', charset='UTF-8')
+    script(type='text/javascript', src='/js/locales/bootstrap-datetimepicker.zh-CN.js', charset='UTF-8')
+    script(src="/js/labmanage.js")

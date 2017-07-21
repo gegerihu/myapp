@@ -66,6 +66,7 @@ body{
     border-left: 4px solid;
     border-color: #337ab7;
     position:relative;
+    z-index: 1;
 }
 .title-bg-line-bl:after {
     content: "";
@@ -84,7 +85,7 @@ body{
 .title-bg-line-bl > span {
     display: inline-block;
     position: relative;
-    z-index: 1;
+    z-index: 2;
     background-color: #fff;
     padding:0 10px 0 10px;
 }
@@ -158,8 +159,9 @@ body{
     width:100px;
     height:30px;
     padding-left: 20px;
-    right:10px;
-    top:10px;
+    right:0px;
+    top:-1px;
+    z-index: 10;
     }
 
 .media-date{
@@ -333,4 +335,21 @@ ul li {
     color: #999;
     font-size: 1em;
     margin: 0 0 20px;
+}
+.appdetail .row .col-md-3
+{
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    border-color: #d6e9c6
+}
+.appdetail .row .col-md-9
+{
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    border-color: #d6e9c6
+}
+
+.appdetail h4{
+  font-size: 14px;
+  color: #337ab7;
 }

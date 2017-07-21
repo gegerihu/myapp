@@ -2,6 +2,7 @@
  * Created by Administrator on 2015/4/15.
  * 管理员用户组对象
  */
+
 var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
@@ -25,7 +26,7 @@ var ContentSchema = new Schema({
    // keywords : String,
     sImg : { type: String, default: "/images/1.jpg" }, // 文章小图
     description : String,
-    
+
     meta:{
         createDate: { type: Date, default: Date.now },
         updateDate: { type: Date, default: Date.now }},// 更新时间
@@ -44,9 +45,9 @@ var ContentSchema = new Schema({
    // repositoryPath : String, // git 知识库路径
    // downPath : String, // git 项目下载地址
     //previewPath : String // 插件预览地址
-    
+
 });
-    
+
     ContentSchema.pre('save',function(next){
         if (this.isNew) {
             this.meta.createDate = this.meta.updateDate = Date.now ;
@@ -74,30 +75,9 @@ var ContentSchema = new Schema({
 
     ContentSchema.plugin(mongoosePaginate);
 
-// ContentSchema.statics = {
-// //更新评论数
-//     updateCommentNum : function(contentId,key,callBack){
-//         Content.findOne({'_id' : contentId},'commentNum',function(err,doc){
-//             if(err){
-//                 res.end(err)
-//             }
-//             if(key === 'add'){
-//                 doc.commentNum = doc.commentNum + 1;
-//             }else if(key === 'del'){
-//                 doc.commentNum = doc.commentNum - 1;
-//             }
-//             doc.save(function(err){
-//                 if(err) throw err;
-//                 callBack();
-//             })
-//         })
-//     }
-
-// };
 
 
 
 var Content = mongoose.model("Content",ContentSchema);
 
 module.exports = Content;
-

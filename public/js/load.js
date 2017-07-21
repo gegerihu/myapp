@@ -14,7 +14,9 @@ $(function(){
         };
     });
 $(function(){
-    $('.edui-upload-video').attr('preload','auto');
+    $('.edui-upload-video').attr('preload','auto').attr('width','100%');
+    $('audio').attr('preload','auto').attr('width','100%');
+    $('video').attr('preload','auto').attr('width','100%');
 });
 $(function(){
       $('#signupform').submit(function(){
@@ -43,6 +45,7 @@ $(function(){
 })
 
 $(function(){
+
       $('#loginform').submit(function(){
 
         $(this).ajaxSubmit({
@@ -50,10 +53,17 @@ $(function(){
           status('Error: ' + xhr.status);
           },
           success: function(response) {
-          $("#login-notice").empty().removeClass('hide').text(response);
-          console.log(response)
+          console.log(response);
+          if(response == '登录成功!') {
+            console.log('34242424');
+            $('#loginform').empty().text(response);
+            window.location.reload();
+                }
+          else{
+            $("#login-notice").empty().removeClass('hide').text(response);
             }
-        });
+          }
+         });
         return false;
       });
  });

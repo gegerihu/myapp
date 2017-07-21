@@ -6,14 +6,15 @@ html(lang="zh-CN")
 		meta(name="viewport",content="width=device-width, initial-scale=1, height=device-height")
 		meta(name="description",content="")
 		meta(name="author",content="")
-		//- link(rel="icon",href="../../favicon.ico")
+		//- link(rel="icon",href="/icon/chuanmeixi.ico")
 		title= title
 		link(rel="stylesheet",href="/css/bootstrap.min.css")
 		link(href='/css/theme.css', rel='stylesheet')
+		block stylesheets
 	body(data-spy="scroll",data-target=".scrollspy" )
 		header(style='background-color:#63a3bf;height:200px')
 			.container
-				img(src='/images/logo2.png')
+				//- img(src='/images/logo2.png')
 		nav.navbar.navbar-default
 			.container(style='margin-bottom: 0px')
 				.navbar-header
@@ -78,17 +79,29 @@ html(lang="zh-CN")
 						li
 							a(href='/news') 新闻动态
 						li
-							a(href='#') 实验室管理
-
-					ul.nav.navbar-nav.navbar-right(style='font-size:10px')
-						li
-							a(href='', data-toggle='modal', data-target='#signup-modal')
-								span.glyphicon.glyphicon-user
-								|  注册
-						li
-							a(href='', data-toggle='modal', data-target='#login-modal')
-								span.glyphicon.glyphicon-log-in
-								|  登录
+							a(href='/labmanage') 实验室管理
+					if  user
+						ul.nav.navbar-nav.navbar-right(style='font-size:10px')
+							li.dropdown
+								a.dropdown-toggle(href='/teach', data-toggle='dropdown', role='button', aria-expanded='false')
+									| #{user.userName}
+									span.caret
+								ul.dropdown-menu(role='menu')
+									li
+										a(href='/user/editprofile') 修改信息
+									li
+										a(href='/user/applist') 我的申请
+									li
+										a(href='/logout') 退出
+					else
+						ul.nav.navbar-nav.navbar-right(style='font-size:10px')
+							li
+								a(href='', data-toggle='modal', data-target='#signup-modal')
+									span.glyphicon.glyphicon-user 注册
+							li
+								a(href='', data-toggle='modal', data-target='#login-modal')
+									span.glyphicon.glyphicon-log-in
+									|  登录
 			#login-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true', style='display: none;')
 				.container
 					#loginbox.mainbox.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2(style='margin-top:250px;')
@@ -98,7 +111,6 @@ html(lang="zh-CN")
 								div(style='float:right; font-size: 100%; position: relative; top:-20px')
 									span.glyphicon.glyphicon-remove(role='button' data-dismiss='modal')
 							.panel-body(style='padding-top:30px')
-								#login-alert.alert.alert-danger.col-sm-12(style='display:none')
 								form#loginform.form-horizontal(method='post' action='/login')
 									#login-notice.alert.alert-danger.hide
 										| 错误提示！
@@ -110,11 +122,11 @@ html(lang="zh-CN")
 										span.input-group-addon
 											i.glyphicon.glyphicon-lock
 										input#login-password.form-control(type='password', name='user[password]', placeholder='密码')
-									.input-group
-										.checkbox
-											label
-												input#login-remember(type='checkbox', name='remember', value='1')
-												|  记住我
+									//- .input-group
+									//- 	.checkbox
+									//- 		label
+									//- 			input#login-remember(type='checkbox', name='user[remember]', value='1')
+									//- 			|  记住我
 									.form-group(style='margin-top:10px')
 										// Button
 										.col-sm-4.col-sm-offset-2.controls

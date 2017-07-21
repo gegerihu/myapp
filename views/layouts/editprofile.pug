@@ -1,0 +1,98 @@
+extends ../_bootstrap
+block stylesheets
+    //- link(href='http://cdn.bootcss.com/twitter-bootstrap/2.2.2/css/bootstrap.min.css', rel='stylesheet')
+    //- link(rel='stylesheet prefetch', href='https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css')
+block body
+    .container(style='min-height:500px')
+        .content
+            if user
+                .panel.panel-info(style='margin-top: 1em')
+                    .panel-heading
+                        h3.panel-title(style='text-align:center') 修改个人信息
+                    .panel-body
+                        form#editprofile.form-horizontal(method='post' action='/user/editprofile' )
+                            #signup-notice.alert.alert-danger.hide
+                                | 错误提示！
+                            .form-group
+                                label.col-md-3.control-label(for='username') 用户名
+                                .col-md-6
+                                    input.form-control(type='text', name='user[userName]', placeholder='用户名' required  readonly value=user.userName)
+                            .form-group
+                                label.col-md-3.control-label(for='name') 姓名
+                                .col-md-6
+                                    input.form-control(type='text', name='user[name]', placeholder='姓名' required value=user.name)
+                            .form-group
+                                label.col-md-3.control-label(for='email') 邮箱
+                                .col-md-6
+                                    input.form-control(type='email', name='user[email]', placeholder='邮箱地址' required value=user.email)
+                            .form-group
+                                label.col-md-3.control-label(for='calss') 年级专业
+                                .col-md-6
+                                    input.form-control(type='text', name='user[class]', placeholder='年级专业' required value=user.class)
+                            .form-group
+                                label.col-md-3.control-label(for='studentId') 学号
+                                .col-md-6
+                                    input.form-control(type='text', name='user[studentId]', placeholder='学号' required value=user.studentId)
+                            .form-group
+                                label.col-md-3.control-label(for='phone') 电话号码
+                                .col-md-6
+                                    input.form-control(type='text', name='user[phoneNum]', placeholder='电话号码' required value=user.phoneNum)
+                            .form-group
+                                // Button
+                                .col-md-offset-3.col-md-9
+                                    button#btn-signup.btn.btn-info(type='submit') 确认修改
+                .panel.panel-info(style='margin-top: 1em')
+                    .panel-heading
+                        h3.panel-title(style='text-align:center') 修改密码
+                    .panel-body
+                        .row
+                            #notice.alert.alert-danger.col-md-offset-3.col-md-6.hide | 错误提示！
+                        form#resetpwd.form-horizontal(method='post' action='/user/editprofile/resetpwd' )
+                            .form-group
+                                label.col-md-3.control-label(for='oldpassword') 旧密码
+                                .col-md-3
+                                    input.form-control(type='password', name='oldpassword', placeholder='密码' required)
+                            .form-group
+                                label.col-md-3.control-label(for='password') 新密码
+                                .col-md-3
+                                    input.form-control(type='password', name='newpassword', placeholder='密码' required)
+                            .form-group
+                                label.col-md-3.control-label(for='checkpwd') 确认新密码
+                                .col-md-3
+                                    input.form-control(type='password', name='confirmPwd', placeholder='确认新密码' required)
+                            .form-group
+                                // Button
+                                .col-md-offset-3.col-md-9
+                                    button#btn-signup.btn.btn-info(type='submit') 修改密码
+            else
+                h3  请先登录！
+block scripts
+    script(src='/js/jquery.form.min.js')
+    script.
+        $(function(){
+            $('#editprofile').submit(function(){
+            $(this).ajaxSubmit({
+                error: function(xhr) {
+                status('Error: ' + xhr.status);
+                },
+                success: function(response) {
+                console.log(response);
+                    $("#editprofile").empty().text(response);
+                    }
+                 });
+                return false;
+              });
+              $('#resetpwd').submit(function(){
+            $(this).ajaxSubmit({
+                error: function(xhr) {
+                status('Error: ' + xhr.status);
+                },
+                success: function(response) {
+                console.log(response);
+                    //$("#resetpwd").empty();
+                    $("#notice").empty().removeClass('hide').text(response);
+                    }
+                 });
+                return false;
+              });
+        });

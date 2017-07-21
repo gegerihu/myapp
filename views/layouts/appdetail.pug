@@ -1,0 +1,95 @@
+extends ../_bootstrap
+block stylesheets
+block body
+    .container(style='min-height:500px')
+        .content
+            if user && form
+                .panel.panel-info(style='margin-top: 1em')
+                    .panel-heading
+                        h3.panel-title(style='text-align:center') 申请表详情
+                    .panel-body
+                        .panel.panel-success(style='margin-top: 1em')
+                            .panel-body.appdetail(style='padding-top: 0px; padding-bottom: 0px;')
+                                .row
+                                    .col-md-3
+                                        h5
+                                            strong 申请人姓名
+                                    .col-md-3
+                                        h4 #{user.name}
+                                    .col-md-3
+                                        h5
+                                            strong 年级专业
+                                    .col-md-3
+                                        h4 #{user.class}
+                                .row
+                                    .col-md-3
+                                        h5
+                                            strong 学号
+                                    .col-md-3
+                                        h4 #{user.studentId}
+                                    .col-md-3
+                                        h5
+                                            strong 联系电话
+                                    .col-md-3
+                                        h4 #{user.phoneNum}
+                                .row
+                                    .col-md-3
+                                        h5
+                                            strong 申请日期
+                                    .col-md-9
+                                        h4 #{moment(form.date).format('YYYY-MM-DD dddd a h:MM')}
+                                .row
+                                    .col-md-3
+                                        h5
+                                            strong 借用设备或实验室
+                                    .col-md-9
+                                        h4 #{form.devices}
+                                .row
+                                    .col-md-3
+                                        h5
+                                            strong 借出日期
+                                    .col-md-3
+                                        h4 #{form.outTime}
+                                    .col-md-3
+                                        h5
+                                            strong 归还时间
+                                    .col-md-3
+                                        h4 #{form.returnTime}
+                                .row
+                                    .col-md-3
+                                        h5
+                                            strong 借用事由
+                                    .col-md-9
+                                        h4 #{form.reasons}
+                                .row
+                                    .col-md-3
+                                        h5
+                                            strong 指导老师
+                                    .col-md-9
+                                        h4 #{form.advisor}
+                                .row
+                                    .col-md-3
+                                        h5
+                                            strong 申请状态
+                                    .col-md-9
+                                        - var state = form.state
+                                        case state
+                                            when 0
+                                                h4 同意借出
+                                            when 1
+                                                h4 不同意
+                                            when 2
+                                                h4 到期已还
+                                            when 3
+                                                h4 过期未还
+                                            when 4
+                                                h4 申请中
+                                .row
+                                    .col-md-3
+                                        h5
+                                            strong 备注
+                                    .col-md-9
+                                        h4 #{form.comment}
+            else
+                h3  请先登录！
+block scripts
