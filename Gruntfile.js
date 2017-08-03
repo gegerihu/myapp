@@ -3,7 +3,7 @@ module.exports = function(grunt){
 
 	grunt.initConfig({
 		watch: {
-			jade: {
+			pug: {
 				files: 'views/**',
 				options: {
 					livereload : true
@@ -41,13 +41,14 @@ module.exports = function(grunt){
 			}
 		}
 
+
 	})
 
 
 	grunt.loadNpmTasks('grunt-contrib-watch')
 	grunt.loadNpmTasks('grunt-nodemon')
 	grunt.loadNpmTasks('grunt-concurrent')
-
+	grunt.loadNpmTasks('grunt-contrib-pug');
 
 	grunt.option('force',true)
 

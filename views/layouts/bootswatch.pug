@@ -1,25 +1,16 @@
 extends ../_bootstrap
 block body
-	// Fixed navbar
 	.container
 		#myslider.carousel.slide(data-ride='carousel')
 			ol.carousel-indicators
-				li.active(data-target='#myslider',data-slide-to='0')
-				li(data-target='#myslider',data-slide-to='1')
-				li(data-target='#myslider',data-slide-to='2')
+				each item ,i in carousels
+					li(data-target='#myslider',data-slide-to=i)
 			.carousel-inner(role='listbox')
-				.item.active
-					img(src='/images/banner1.jpg',alt='')
-					.carousel-caption
-						|....
-				.item
-					img(src='/images/banner2.jpg',alt='')
-					.carousel-caption
-						|....
-				.item
-					img(src='/images/banner3.jpg',alt='')
-					.carousel-caption
-						|....
+				each item in carousels
+					.item
+						img(src=item.path,alt=item.title)
+						.carousel-caption
+							|#{item.title}
 
 			a.carousel-control.left(href='/#myslider',role='button', data-slide='prev')
 				span.glyphicon.glyphicon-chevron-left(aria-hidden='ture')
@@ -93,4 +84,5 @@ block body
 							a.list-group-item(href='/news/'+item._id)
 								span.badge #{myDateFormat(item.meta.updateDate)}
 								| #{item.title}
-
+block scripts
+	script(src="/js/load.js")

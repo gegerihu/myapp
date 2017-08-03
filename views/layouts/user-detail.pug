@@ -28,14 +28,15 @@ block body
                                     label.col-md-3.control-label(for='email') 邮箱
                                     .col-md-6
                                         input.form-control(type='email', name='user[email]', placeholder='邮箱地址' required value=user.email)
-                                .form-group
-                                    label.col-md-3.control-label(for='calss') 年级专业
-                                    .col-md-6
-                                        input.form-control(type='text', name='user[class]', placeholder='年级专业' required value=user.class)
-                                .form-group
-                                    label.col-md-3.control-label(for='studentId') 学号
-                                    .col-md-6
-                                        input.form-control(type='text', name='user[studentId]', placeholder='学号' required value=user.studentId)
+                                if user.status == 0
+                                    .form-group
+                                        label.col-md-3.control-label(for='calss') 年级专业
+                                        .col-md-6
+                                            input.form-control(type='text', name='user[class]', placeholder='年级专业' required value=user.class)
+                                    .form-group
+                                        label.col-md-3.control-label(for='studentId') 学号
+                                        .col-md-6
+                                            input.form-control(type='text', name='user[studentId]', placeholder='学号' required value=user.studentId)
                                 .form-group
                                     label.col-md-3.control-label(for='phone') 电话号码
                                     .col-md-6
@@ -44,9 +45,11 @@ block body
                                     label.col-md-3.control-label(for='phone') 用户身份
                                     .col-md-6
                                         if user.status === 1
-                                            input.form-control(type='text', required value='管理员')
-                                        else
-                                            input.form-control(type='text', placeholder='电话号码' required readonly value='学生用户')
+                                            input.form-control(type='text', required readonly value='教师用户')
+                                        if user.status === 0
+                                            input.form-control(type='text',  required readonly value='学生用户')
+                                        if user.status === 3
+                                            input.form-control(type='text',  required readonly value='管理员')
                                 .form-group
                                     label.col-md-3.control-label(for='app') 借用申请数
                                     .col-md-6
@@ -60,9 +63,8 @@ block body
                     h3.panel-title(style='text-align:center') 修改密码
                 .panel-body
                     .row
-                        #notice.alert.alert-danger.col-md-offset-3.col-md-6.hide | 错误提示！
+                        #resetpwd-notice.alert.col-md-offset-3.col-md-6.hide | 错误提示！
                     form#resetpwd.form-horizontal(method='post' action='/manage/user/'+ user._id +'/resetpwd' )
-                        #resetpwd-notice.alert.alert-danger.col-md-offset-3.col-md-9.hide| 错误提示！
                         .form-group
                             label.col-md-3.control-label(for='password') 新密码
                             .col-md-3
@@ -106,7 +108,12 @@ block scripts
               success: function(response) {
               console.log(response);
                   //$("#resetpwd").empty();
-                  $("#resetpwd-notice").empty().removeClass('hide').text(response);
+                  if(response.success){
+                    $("#resetpwd-notice").empty().removeClass('hide alert-danger').addClass('alert-success').text(response.success);
+                    $('#resetpwd').hide();
+                    }else{
+                    $("#resetpwd-notice").empty().removeClass('hide').addClass('alert-danger').text(response.danger);
+                    }
                   }
                });
               return false;

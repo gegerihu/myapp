@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var shortid = require('shortid');
-    bcrypt = require('bcrypt'),                         // 用于密码加密
+var bcrypt = require('bcrypt'), // 用于密码加密
     SALT_WORK_FACTOR = 10;
 
 var UserSchema = new Schema({
@@ -11,35 +11,36 @@ var UserSchema = new Schema({
         'default': shortid.generate
     },
 
-    userName : String,
-    password:   String,
-    email : String,
+    userName: String,
+    password: String,
+    email: String,
     // qq : Number,
-    name:  String,
-    phoneNum : Number,
-    appNum : {type: Number, default: 0},
-    studentId: Number,
-    gender : String,
-    class : String,
-    state: {type:Boolean , default:false},
-    date: { type: Date, default: Date.now()},
+    name: String,
+    phoneNum: String,
+    appNum: { type: Number, default: 0 },
+    studentId: String,
+    // gender: String,
+    class: String,
+    state: { type: Boolean, default: false },
+    date: { type: Date, default: Date.now() },
 
-    status: { type: String, default: '0' },
-
+    status: { type: Number, default: 0 },
+    resetPasswordToken:String,
+    resetPasswordExpires: Date
 });
 
-UserSchema.pre('save',function(next) {
+UserSchema.pre('save', function(next) {
     var user = this;
     // 生成随机的盐，和密码混合后再进行加密
-    bcrypt.genSalt(SALT_WORK_FACTOR,function(err,salt) {
-        if(err) {
+    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+        if (err) {
             return next(err);
         }
-        bcrypt.hash(user.password,salt,function(err,hash) {
-            if(err) {
+        bcrypt.hash(user.password, salt, function(err, hash) {
+            if (err) {
                 return next(err);
             }
-            user.password = hash;  // 将hash后的密码赋值到当前用户密码
+            user.password = hash; // 将hash后的密码赋值到当前用户密码
             next();
         });
     });
@@ -47,13 +48,13 @@ UserSchema.pre('save',function(next) {
 
 // 实例方法，通过实例可以调用
 UserSchema.methods = {
-    comparePassword : function(password,cb) {
+    comparePassword: function(password, cb) {
         // 使用bcrypt的compare方法对用户输入的密码和数据库中保存的密码进行比对
-        bcrypt.compare(password,this.password,function(err,isMatch) {
-            if(err) {
+        bcrypt.compare(password, this.password, function(err, isMatch) {
+            if (err) {
                 return cb(err);
             }
-            cb(null,isMatch);
+            cb(null, isMatch);
         });
     }
 };
@@ -63,16 +64,16 @@ UserSchema.statics = {
     fetch: function(cb) {
         return this
             .find({})
-            .sort({'date':-1})
+            .sort({ 'date': -1 })
             .exec(cb);
     },
-    findById: function(id,cb) {
+    findById: function(id, cb) {
         return this
-            .findOne({_id: id})
+            .findOne({ _id: id })
             .exec(cb);
     }
 };
 
-var User = mongoose.model("User",UserSchema);
+var User = mongoose.model("User", UserSchema);
 
 module.exports = User;

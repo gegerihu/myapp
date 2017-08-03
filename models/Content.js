@@ -4,9 +4,7 @@
  */
 
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
-
 var shortid = require('shortid');
 var mongoosePaginate = require('mongoose-paginate')
 //var ContentCategory = require('./ContentCategory');
@@ -17,67 +15,64 @@ var ContentSchema = new Schema({
         unique: true,
         'default': shortid.generate
     },
-    title:  String,
+    title: String,
     //stitle : String,
     type: { type: String, default: "content" }, // 发布形式 默认为普通文档,约定 singer 为单页面文档
-    category : String , //文章类别
+    category: String, //文章类别
     //sortPath : String, //存储所有父节点结构
-   // tags : String, // 标签
-   // keywords : String,
-    sImg : { type: String, default: "/images/1.jpg" }, // 文章小图
-    description : String,
+    // tags : String, // 标签
+    // keywords : String,
+    sImg: { type: String, default: "/upload/smallimages/smallimage-1500630156988.jpg" }, // 文章小图
+    description: String,
 
-    meta:{
+    meta: {
         createDate: { type: Date, default: Date.now },
-        updateDate: { type: Date, default: Date.now }},// 更新时间
-    author: { type: String , default:'传媒系'}, // 文档作者
+        updateDate: { type: Date, default: Date.now }
+    }, // 更新时间
+    author: { type: String, default: '传媒系' }, // 文档作者
     //state : { type: Boolean, default: true },  // 是否在前台显示，默认显示
     //isTop : { type: Number, default: 0 },  // 是否推荐，默认不推荐 0为不推荐，1为推荐
-    clickNum : { type: Number, default: 1 },
-    mainContent : {},
-   // commentNum : { type: Number, default: 0 }, // 评论数
-   // likeNum : { type: Number, default: 0 }, // 喜欢数
-   // likeUserIds : String, // 喜欢该文章的用户ID集合
+    clickNum: { type: Number, default: 1 },
+    mainContent: {},
+    // commentNum : { type: Number, default: 0 }, // 评论数
+    // likeNum : { type: Number, default: 0 }, // 喜欢数
+    // likeUserIds : String, // 喜欢该文章的用户ID集合
     //from : { type: String, default: '1' }, // 来源 1为原创 2为转载
 
 
-//    插件信息相关属性
-   // repositoryPath : String, // git 知识库路径
-   // downPath : String, // git 项目下载地址
+    //    插件信息相关属性
+    // repositoryPath : String, // git 知识库路径
+    // downPath : String, // git 项目下载地址
     //previewPath : String // 插件预览地址
 
 });
 
-    ContentSchema.pre('save',function(next){
-        if (this.isNew) {
-            this.meta.createDate = this.meta.updateDate = Date.now ;
-        }
-        else {
-            this.meta.updateDate = Date.now;
-        }
-        next();
-    });
-
-
-    ContentSchema.statics = {
-        fetch: function(cb) {
-            return this
-                .find({})
-                .sort({'meta.updateDate':-1})
-                .exec(cb);
-        },
-        findById: function( id, cb){
-            return this
-                .findOne({_id: id})
-                .exec(cb);
-        }
+ContentSchema.pre('save', function(next) {
+    if (this.isNew) {
+        this.meta.createDate = this.meta.updateDate = Date.now;
+    } else {
+        this.meta.updateDate = Date.now;
     }
+    next();
+});
 
-    ContentSchema.plugin(mongoosePaginate);
+ContentSchema.statics = {
+    fetch: function(cb) {
+        return this
+            .find({})
+            .sort({ 'meta.updateDate': -1 })
+            .exec(cb);
+    },
+    findById: function(id, cb) {
+        return this
+            .findOne({ _id: id })
+            .exec(cb);
+    }
+}
+
+ContentSchema.plugin(mongoosePaginate);
 
 
-
-
-var Content = mongoose.model("Content",ContentSchema);
+var Content = mongoose.model("Content", ContentSchema);
 
 module.exports = Content;

@@ -7,8 +7,9 @@ html(lang="zh-CN")
 		meta(name="description",content="")
 		meta(name="author",content="")
 		//- link(rel="icon",href="/icon/chuanmeixi.ico")
-		title= title
+		title= title·····
 		link(rel="stylesheet",href="/css/bootstrap.min.css")
+		//- link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous")
 		link(href='/css/theme.css', rel='stylesheet')
 		block stylesheets
 	body(data-spy="scroll",data-target=".scrollspy" )
@@ -104,7 +105,7 @@ html(lang="zh-CN")
 									|  登录
 			#login-modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true', style='display: none;')
 				.container
-					#loginbox.mainbox.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2(style='margin-top:250px;')
+					#loginbox.mainbox.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2(style='margin-top:100px;')
 						.panel.panel-info
 							.panel-heading
 								.panel-title 登录
@@ -132,7 +133,7 @@ html(lang="zh-CN")
 										.col-sm-4.col-sm-offset-2.controls
 											button#btn-login.btn.btn-info(type='submit') 登录
 										.col-sm-4.controls
-											a(href='#') 忘记密码
+											a(href='/user/forgot') 忘记密码
 									.form-group
 										.col-md-12.control
 											div(style='border-top: 1px solid#888; padding-top:15px; font-size:85%')
@@ -148,46 +149,137 @@ html(lang="zh-CN")
 								div(style='float:right; font-size: 100%; position: relative; top:-20px')
 									span.glyphicon.glyphicon-remove(role='button' data-dismiss='modal')
 							.panel-body
-								form#signupform.form-horizontal(method='post' action='/signup' )
-									#signup-notice.alert.alert-danger.hide
-										| 错误提示！
-									.form-group
-										label.col-md-3.control-label(for='username') 用户名
-										.col-md-9
-											input.form-control(type='text', name='user[userName]', placeholder='用户名' required)
-									.form-group
-										label.col-md-3.control-label(for='password') 密码
-										.col-md-9
-											input.form-control(type='password', name='user[password]', placeholder='密码' required)
-									.form-group
-										label.col-md-3.control-label(for='checkpw') 确认密码
-										.col-md-9
-											input.form-control(type='password', name='user[confirmPwd]', placeholder='确认密码' required)
-									.form-group
-										label.col-md-3.control-label(for='name') 姓名
-										.col-md-9
-											input.form-control(type='text', name='user[name]', placeholder='姓名' required)
-									.form-group
-										label.col-md-3.control-label(for='email') 邮箱
-										.col-md-9
-											input.form-control(type='email', name='user[email]', placeholder='邮箱地址' required)
-									.form-group
-										label.col-md-3.control-label(for='calss') 年级专业
-										.col-md-9
-											input.form-control(type='text', name='user[class]', placeholder='年级专业' required)
-									.form-group
-										label.col-md-3.control-label(for='studentId') 学号
-										.col-md-9
-											input.form-control(type='text', name='user[studentId]', placeholder='学号' required)
-									.form-group
-										label.col-md-3.control-label(for='phone') 电话号码
-										.col-md-9
-											input.form-control(type='text', name='user[phoneNum]', placeholder='电话号码' required)
-									.form-group
-										// Button
-										.col-md-offset-3.col-md-9
-											button#btn-signup.btn.btn-info(type='submit') 提交
+								// Nav tabs
+								ul.nav.nav-tabs(role='tablist')
+									li.active(role='presentation')
+										a(href='#home', aria-controls='home', role='tab', data-toggle='tab') 学生用户
+									li(role='presentation')
+										a(href='#profile', aria-controls='profile', role='tab', data-toggle='tab') 教师用户
 
+								// Tab panes
+								.tab-content
+									#home.tab-pane.active(role='tabpanel')
+										form#student-signupform.form-horizontal(method='post' action='/signup')
+											#student-signup-notice.alert.hide
+												| 提示信息
+											#student-signupform-main
+												.form-group
+													label.col-md-3.control-label(for='username') 用户名
+													.col-md-9
+														input.form-control(type='text', name='user[userName]', placeholder='用户名' required)
+													.col-md-9.col-md-offset-3
+														h5#userName.alert-danger.wrong-info.hide
+															span.glyphicon.glyphicon-remove
+															|错误信息
+												.form-group
+													label.col-md-3.control-label(for='password') 密码
+													.col-md-9
+														input.form-control(type='password', name='user[password]', placeholder='密码' required)
+													.col-md-9.col-md-offset-3
+														h5#password.alert-danger.wrong-info.hide
+															span.glyphicon.glyphicon-remove
+															|错误信息
+												.form-group
+													label.col-md-3.control-label(for='checkpw') 确认密码
+													.col-md-9
+														input.form-control(type='password', name='user[confirmPwd]', placeholder='确认密码' required)
+													.col-md-9.col-md-offset-3
+														h5#notConfirm.alert-danger.wrong-info.hide
+															span.glyphicon.glyphicon-remove
+															|错误信息
+												.form-group
+													label.col-md-3.control-label(for='name') 姓名
+													.col-md-9
+														input.form-control(type='text', name='user[name]', placeholder='姓名' required)
+												.form-group
+													label.col-md-3.control-label(for='email') 邮箱
+													.col-md-9
+														input.form-control(type='email', name='user[email]', placeholder='邮箱地址' required)
+													.col-md-9.col-md-offset-3
+														h5#email.alert-danger.wrong-info.hide
+															span.glyphicon.glyphicon-remove
+															|错误信息
+												.form-group
+													label.col-md-3.control-label(for='calss') 年级专业
+													.col-md-9
+														input.form-control(type='text', name='user[class]', placeholder='年级专业' required)
+												.form-group
+													label.col-md-3.control-label(for='studentId') 学号
+													.col-md-9
+														input.form-control(type='text', name='user[studentId]', placeholder='学号' required)
+												.form-group.hide
+													label.col-md-3.control-label(for='status') 身份
+													.col-md-9
+														input.form-control(type='text', name='user[status]', placeholder='学号' required value = 0)
+												.form-group
+													label.col-md-3.control-label(for='phone') 电话号码
+													.col-md-9
+														input.form-control(type='text', name='user[phoneNum]', placeholder='电话号码' required)
+													.col-md-9.col-md-offset-3
+														h5#phone.alert-danger.wrong-info.hide
+															span.glyphicon.glyphicon-remove
+															|错误信息
+												.form-group
+													// Button
+													.col-md-offset-3.col-md-9
+														button#btn-signup.btn.btn-info(type='submit') 提交
+									#profile.tab-pane(role='tabpanel')
+										form#lecturer-signupform.form-horizontal(method='post' action='/signup' )
+											#lecturer-signup-notice.alert.alert-danger.hide
+												| 错误提示
+											#lecturer-signupform-main
+												.form-group
+													label.col-md-3.control-label(for='username') 用户名
+													.col-md-9
+														input.form-control(type='text', name='user[userName]', placeholder='用户名' required)
+													.col-md-9.col-md-offset-3
+														h5#userName-lecturer.alert-danger.wrong-info.hide
+															span.glyphicon.glyphicon-remove
+															|错误信息
+												.form-group
+													label.col-md-3.control-label(for='password') 密码
+													.col-md-9
+														input.form-control(type='password', name='user[password]', placeholder='密码' required)
+													.col-md-9.col-md-offset-3
+														h5#password-lecturer.alert-danger.wrong-info.hide
+															span.glyphicon.glyphicon-remove
+															|错误信息
+												.form-group
+													label.col-md-3.control-label(for='checkpw') 确认密码
+													.col-md-9
+														input.form-control(type='password', name='user[confirmPwd]', placeholder='确认密码' required)
+													.col-md-9.col-md-offset-3
+														h5#notConfirm-lecturer.alert-danger.wrong-info.hide
+															span.glyphicon.glyphicon-remove
+															|错误信息
+												.form-group
+													label.col-md-3.control-label(for='name') 姓名
+													.col-md-9
+														input.form-control(type='text', name='user[name]', placeholder='姓名' required)
+												.form-group
+													label.col-md-3.control-label(for='email') 邮箱
+													.col-md-9
+														input.form-control(type='email', name='user[email]', placeholder='邮箱地址' required)
+													.col-md-9.col-md-offset-3
+														h5#email-lecturer.alert-danger.wrong-info.hide
+															span.glyphicon.glyphicon-remove
+															|错误信息
+												.form-group.hide
+													label.col-md-3.control-label(for='status') 身份
+													.col-md-9
+														input.form-control(type='text', name='user[status]', placeholder='学号' required value = 1)
+												.form-group
+													label.col-md-3.control-label(for='phone') 电话号码
+													.col-md-9
+														input.form-control(type='text', name='user[phoneNum]', placeholder='电话号码' required)
+													.col-md-9.col-md-offset-3
+														h5#phone-lecturer.alert-danger.wrong-info.hide
+															span.glyphicon.glyphicon-remove
+															|错误信息
+												.form-group
+													// Button
+													.col-md-offset-3.col-md-9
+														button#btn-signup.btn.btn-info(type='submit') 提交
 
 		block body
 		include footer
@@ -195,6 +287,6 @@ html(lang="zh-CN")
 		script(src="/js/jquery.min.js")
 		script(src="/js/bootstrap.min.js")
 		script(src='/js/jquery.form.min.js')
-		script(src="/js/load.js")
+
 		//- script(src="/js/pagination.js")
 	block scripts

@@ -1,0 +1,57 @@
+extends ../_bootstrap
+block stylesheets
+    //- link(href='http://cdn.bootcss.com/twitter-bootstrap/2.2.2/css/bootstrap.min.css', rel='stylesheet')
+    //- link(rel='stylesheet prefetch', href='https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css')
+block body
+    .container(style='min-height:500px')
+        .content
+            .panel.panel-info(style='margin-top: 1em')
+                    .panel-heading
+                        h3.panel-title(style='text-align:center') 修改密码
+                    .panel-body
+                        if userInfo
+                            form#resetpwd.form-horizontal(method='post' action='/reset/'+ userInfo.resetPasswordToken )
+                                #resetpwd-notice.alert.hide
+                                    | 错误提示！
+                                #resetpwd-main
+                                    .form-group
+                                        label.col-md-3.control-label(for='password') 新密码
+                                        .col-md-3
+                                            input.form-control(type='password', name='newpassword', placeholder='密码' required)
+                                    .form-group
+                                        label.col-md-3.control-label(for='checkpwd') 确认新密码
+                                        .col-md-3
+                                            input.form-control(type='password', name='confirmPwd', placeholder='确认新密码' required)
+                                    .form-group
+                                        // Button
+                                        .col-md-offset-3.col-md-9
+                                            button#btn-signup.btn.btn-info(type='submit') 修改密码
+                        else
+                            .alert.alert-danger
+                                p 链接已失效！
+
+block scripts
+    script(src='/js/jquery.form.min.js')
+    script.
+        $(function(){
+            $("input").focus(function(){
+                $(".alert").hide();
+              });
+              $('#resetpwd').submit(function(){
+                $(this).ajaxSubmit({
+                error: function(xhr) {
+                status('Error: ' + xhr.status);
+                },
+                success: function(response) {
+                    console.log(response);
+                    if(response.success){
+                        $("#resetpwd-notice").empty().show().removeClass('hide alert-danger').addClass('alert-success').text(response.success);
+                        $('#resetpwd-mian').hide();
+                        }else{
+                        $("#resetpwd-notice").empty().show().removeClass('hide').addClass('alert-danger').text(response.danger);
+                        }
+                    }
+                });
+                return false;
+              });
+        });

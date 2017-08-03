@@ -1,13 +1,14 @@
 extends sidebar
 block ueditor
     link(href="/css/square/red.css" rel="stylesheet")
+    link(href='/css/bootstrap-datetimepicker.min.css', rel='stylesheet')
 block body
     .container-fluid
         .content
             .panel.panel-info(style='margin-top: 1em')
                 .panel-heading
                     h3.panel-title(style='text-align:center') 申请表详情
-                .panel-body
+                #app-main.panel-body
                     .panel.panel-success
                         .panel-body.appdetail(style='padding: 0px 15px 0 15px;')
                             .row
@@ -54,7 +55,7 @@ block body
                                     h5
                                         strong 归还时间
                                 .col-md-3
-                                    h4 #{form.returnTime}
+                                    h4#returnTime #{form.returnTime}
                             .row
                                 .col-md-3
                                     h5
@@ -71,81 +72,80 @@ block body
                                 .col-md-3
                                     h5
                                         strong 申请状态
-                                .col-md-9
+                                .col-md-9.state(style='height:38px')
                                     - var state = form.state
                                     case state
                                         when 0
-                                            h4 同意借出
+                                            //- h4 同意借出
+                                            span.btn-success.btn-sm(style=' position: absolute; top :5px') 同意借出
                                         when 1
-                                            h4 不同意
+                                            span.btn-warning.btn-sm(style=' position: absolute; top :5px') 不同意
                                         when 2
-                                            h4 到期已还
+                                            span.btn-info.btn-sm(style=' position: absolute; top :5px') 到期已还
                                         when 3
-                                            h4 过期未还
+                                            span.btn-danger.btn-sm(style=' position: absolute; top :5px') 过期未还
                                         when 4
-                                            h4 申请当中
+                                            span.btn-primary.btn-sm(style=' position: absolute; top :5px') 申请当中
                             .row
                                 .col-md-3
                                     h5
                                         strong 备注
                                 .col-md-9
-                                    h4 #{form.comment}
+                                    h4#comment #{form.comment}
 
-            .panel.panel-danger(style='margin-top: 1em')
+            .panel.panel-warning(style='margin-top: 1em')
                 .panel-heading
                     h3.panel-title(style='text-align:center') 审批
                 .panel-body
+                    #notice.alert.alert-success.col-md-offset-3.col-md-6.hide 错误提示！
                     form#app-examine.form-horizontal(method='post' action='/app-examine/'+form._id )
-                        #notice.alert.alert-danger.hide
-                            | 错误提示！
                         .form-group
                             label.col-md-3.control-label 审批
-                            .col-md-4
-                                input#agree.form-control(type="radio" name="state" value='0')
+                            .col-md-3
+                                input#agree.form-control(type="radio" name="state" required value='0')
                                 label(for='agree') &nbsp;&nbsp;同意借出
-                            .col-md-4
-                                input#agree.form-control(type="radio" name="state" value='1')
+                            .col-md-3
+                                input#agree.form-control(type="radio" name="state"  required value='1')
                                 label(for='disagree') &nbsp;&nbsp;不同意
-                            .col-md-4(style='padding-bottom:10px')
+                            .col-md-3(style='padding-bottom:10px')
                         .form-group
                             label.col-md-3.control-label
-                            .col-md-4
-                                input#agree.form-control(type="radio" name="state" value='2')
+                            .col-md-3
+                                input#agree.form-control(type="radio" name="state"  required value='2')
                                 label(for='agree') &nbsp;&nbsp;到期已还
-                            .col-md-4
-                                input#agree.form-control(type="radio" name="state" value='3')
+                            .col-md-3
+                                input#agree.form-control(type="radio" name="state"  required value='3')
                                 label(for='disagree') &nbsp;&nbsp;过期未还
                         .form-group
+                            label.col-md-3.control-label(for='returnTime') 延长归还日期
+                            .col-md-4
+                                .input-group.date.form_datetime(data-date='', data-date-format='', data-link-field='returnTime' required)
+                                    input.form-control(size='16', type='text',name='extendTime' readonly required value= form.returnTime)
+                                    //- span.input-group-addon
+                                    //-     span.glyphicon.glyphicon-remove
+                                    span.input-group-addon
+                                        span.glyphicon.glyphicon-calendar
+                        .form-group
                             label.col-md-3.control-label 备注
-                            .col-md-6
+                            .col-md-4
                                 textarea.form-control(type='text', rows="10" name='comment', placeholder='备注' ) #{form.comment}
                         .form-group
                             // Button
                             .col-md-offset-4.col-md-6
                                 button#btn-signup.btn.btn-info(type='submit') 确认
+            #delete.panel.panel-danger(style='margin-top: 1em')
+                .panel-heading
+                    h3.panel-title(style='text-align:center') 删除
+                .panel-body
+                    #del-notice.alert.alert-success.col-md-offset-3.col-md-6.hide 错误提示！
+                    .row
+                        .col-md-offset-4.col-md-6
+                            a.btn.btn-danger.del(role='button', data-id= form._id) 删除
 
                     //- include ../footer
 block scripts
     script(src='/js/jquery.form.min.js')
     script(src="/js/icheck.min.js")
-    script.
-        $(document).ready(function(){
-          $('input').iCheck({
-            checkboxClass: 'icheckbox_square-red',
-            radioClass: 'iradio_square-red',
-            increaseArea: '20%' // optional
-          });
-        $('#app-examine').submit(function(){
-        $(this).ajaxSubmit({
-            error: function(xhr) {
-            status('Error: ' + xhr.status);
-            },
-            success: function(response) {
-            console.log(response);
-                //$("#resetpwd").empty();
-                $("#notice").empty().removeClass('hide').text(response);
-                }
-             });
-            return false;
-          });
-        });
+    script(type='text/javascript', src='/js/bootstrap-datetimepicker.min.js', charset='UTF-8')
+    script(type='text/javascript', src='/js/locales/bootstrap-datetimepicker.zh-CN.js', charset='UTF-8')
+    script(src="/js/app-examine.js")

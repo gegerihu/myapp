@@ -7,34 +7,50 @@ html
         meta(name="description",content="")
         meta(name="author",content="")
         title= title
-        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css')
+        link(rel='stylesheet', href='https://cdn.bootcss.com/normalize/6.0.0/normalize.min.css')
         link(rel='stylesheet prefetch', href='/css/bootstrap.min.css')
-        //- link(rel='stylesheet prefetch', href='/css/bootstrap.min.css.map')
+        link(rel='stylesheet prefetch', href='/css/bootstrap.min.css.map')
         link(rel='stylesheet prefetch', href='/css/font-awesome.min.css')
         link(rel='stylesheet', href='/css/sidebar.css')
         //link(rel='stylesheet', href='/css/theme.css')
         block ueditor
     body(data-spy="scroll",data-target=".scrollspy")
-        header.main-header
-            nav.navbar.navbar-default.navbar-fixed-top(style='background-color: #3e454c;')
-                if  user
-                    ul.nav.navbar-nav.navbar-right(style='font-size:15px;float: right!important;position: relative ; margin-right:20px;')
-                        li
-                            a(href='/manage/newapplication', data-toggle='modal', data-target='#signup-modal')
-                                i.fa.fa-fw.fa-bell
-                                span#total.badge
-                        li.dropdown
-                            a.dropdown-toggle(href='', data-toggle='dropdown', role='button', aria-expanded='false' style='color: #ddd;')
-                                i.fa.fa-fw.fa-user
-                                | #{user.userName}
-                                span.caret
-                            ul.dropdown-menu(role='menu')
-                                li
-                                    a(href='/user/editprofile') 修改信息
-                                li
-                                    a(href='/user/applist') 我的申请
-                                li
-                                    a(href='/logout') 退出
+        nav.navbar.navbar-default.navbar-fixed-top(style='background-color: #3e454c;position: fixed;')
+            .container-fluid
+                .navbar-header
+                    button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    //- a.navbar-brand(href='/') 传媒系
+                #navbar.navbar-collapse.collapse
+                    if  adminuser
+                        ul.nav.navbar-nav.navbar-right(style='font-size:15px;float: right!important;position: relative ; margin-right:20px;')
+                            li
+                                a(href='/manage/newapplication')
+                                    i.fa.fa-fw.fa-bell
+                                    span.newapp.badge
+                            li
+                                a(href='/manage/application/overduelist')
+                                    i.fa.fa-fw.fa-exclamation-triangle
+                                    span.overdue.badge.hide
+                            li
+                                a(href='/manage/user/new')
+                                    i.fa.fa-fw.fa-user
+                                    span.newuser.badge.hide
+                            li.dropdown
+                                a.dropdown-toggle(href='', data-toggle='dropdown', role='button', aria-expanded='false' style='color: #ddd;')
+                                    i.fa.fa-fw.fa-user-circle-o
+                                    | #{adminuser.userName}
+                                    span.caret
+                                ul.dropdown-menu(role='menu')
+                                    li
+                                        a(href='/manage/userdetail/'+adminuser._id) 修改信息
+                                    li
+                                        a(href='/manage/user/'+adminuser._id+'/applist') 我的申请
+                                    li
+                                        a(href='/adminlogout') 退出
         #wrapper.toggled
             nav#sidebar-wrapper.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
                     ul.nav.sidebar-nav
@@ -42,7 +58,7 @@ html
                             a(href='/' target="_blank")
                                 | 传媒系
                         li
-                            a(href='#')
+                            a(href='/manage')
                                 i.fa.fa-fw.fa-home
                                 |  Home
                         li.dropdown
@@ -50,17 +66,17 @@ html
                                 i.fa.fa-fw.fa-folder-open
                                 |  文档管理
                                 span.caret
-                            ul.dropdown-menu(role='menu')
+                            ul.dropdown-menu.sidebar(role='menu')
                                 li
-                                    a(href='/manage/content/addnew' )
+                                    a(href='/manage/content/addnew' target="_blank")
                                         i.fa.fa-fw.fa-pencil-square-o
                                         |文档录入
                                 li
-                                    a(href='/manage/content/list')
+                                    a(href='/manage/content/list' target="_blank")
                                         i.fa.fa-fw.fa-list-ul
                                         |文档列表
                                 li
-                                    a(href='/manage/content/carousel')
+                                    a(href='/manage/content/carousel' target="_blank")
                                         i.fa.fa-fw.fa-upload
                                         |图片上传
                         li.dropdown
@@ -68,33 +84,34 @@ html
                                 i.fa.fa-fw.fa-cogs
                                 |  实验室管理
                                 span.caret
-                            ul.dropdown-menu(role='menu')
+                            ul.dropdown-menu.sidebar(role='menu')
                                 li
-                                    a(href='/manage/newapplication')
+                                    a(href='/manage/newapplication' target="_blank")
                                         i.fa.fa-fw.fa-bell
                                         |借出申请
-                                        span.badge.hide
+                                        span.newapp.badge.hide
                                 li
-                                    a(href='/manage/application/list')
+                                    a(href='/manage/application/list' target="_blank")
                                         i.fa.fa-fw.fa-list-ul
                                         |申请列表
                                 li
-                                    a(href='#')
+                                    a(href='/manage/application/overduelist' target="_blank")
                                         i.fa.fa-fw.fa-exclamation-triangle
                                         |到期未还
-                                        span.badge.hide
+                                        span.overdue.badge.hide
                         li.dropdown
                             a.dropdown-toggle(href='#', data-toggle='dropdown')
                                 i.fa.fa-fw.fa-address-book-o
                                 |  用户管理
                                 span.caret
-                            ul.dropdown-menu(role='menu')
+                            ul.dropdown-menu.sidebar(role='menu')
                                 li
-                                    a(href='/manage/user/new')
+                                    a(href='/manage/user/new' target="_blank")
                                         i.fa.fa-fw.fa-user
                                         |新增用户
+                                        span.newuser.badge.hide
                                 li
-                                    a(href='/manage/user/list')
+                                    a(href='/manage/user/list' target="_blank")
                                         i.fa.fa-fw.fa-list-ul
                                         |用户列表
                                 //- li

@@ -19,8 +19,9 @@ block body
                 .panel.panel-info
                     .panel-heading
                         h2.panel-title(style='text-align:center') 实验室及仪器设备借用申请表
-                    #notice.panel-body
-
+                    .panel-body
+                        #notice.alert.hide
+                            | notice
                         form#application.form-horizontal(method='post' action='/application')
                             .form-group
                                 label.col-md-3.control-label(for='applicant') 申请人
@@ -37,8 +38,8 @@ block body
                             .form-group
                                 label.col-md-3.control-label(for='outTime') 借用日期
                                 .col-md-6
-                                    .input-group.date.form_datetime(data-date='', data-date-format='', data-link-field='outTime' required)
-                                        input.form-control(size='16', type='text', name='application[outTime]' readonly required)
+                                    .input-group.date.form_datetime(data-date='', data-date-format='', data-link-field='outTime')
+                                        input.form-control(size='16', type='text', name='application[outTime]'  required readonly)
                                         //- span.input-group-addon
                                         //-     span.glyphicon.glyphicon-remove
                                         span.input-group-addon
@@ -46,8 +47,8 @@ block body
                             .form-group
                                 label.col-md-3.control-label(for='returnTime') 归还日期
                                 .col-md-6
-                                    .input-group.date.form_datetime(data-date='', data-date-format='', data-link-field='returnTime' required)
-                                        input.form-control(size='16', type='text',name='application[returnTime]' readonly required)
+                                    .input-group.date.form_datetime(data-date='', data-date-format='', data-link-field='returnTime' )
+                                        input.form-control(size='16', type='text',name='application[returnTime]'  required readonly)
                                         //- span.input-group-addon
                                         //-     span.glyphicon.glyphicon-remove
                                         span.input-group-addon
@@ -59,7 +60,7 @@ block body
                             .form-group
                                 label.col-md-3.control-label(for='advisor') 指导老师
                                 .col-md-6
-                                    input#advisor.form-control(type='text' name='application[advisor]' required)
+                                    input#advisor.form-control(type='text' name='application[advisor]' required )
                             .form-group
                                 .col-md-3.col-md-offset-3
                                     button.btn.btn-primary(type='submit' style='text-al') 提交申请

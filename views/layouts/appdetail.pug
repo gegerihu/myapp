@@ -18,20 +18,22 @@ block body
                                         h4 #{user.name}
                                     .col-md-3
                                         h5
-                                            strong 年级专业
-                                    .col-md-3
-                                        h4 #{user.class}
-                                .row
-                                    .col-md-3
-                                        h5
-                                            strong 学号
-                                    .col-md-3
-                                        h4 #{user.studentId}
-                                    .col-md-3
-                                        h5
                                             strong 联系电话
                                     .col-md-3
                                         h4 #{user.phoneNum}
+
+                                if user.status == 0
+                                    .row
+                                        .col-md-3
+                                            h5
+                                                strong 学号
+                                        .col-md-3
+                                            h4 #{user.studentId}
+                                        .col-md-3
+                                            h5
+                                                strong 年级专业
+                                        .col-md-3
+                                            h4 #{user.class}
                                 .row
                                     .col-md-3
                                         h5

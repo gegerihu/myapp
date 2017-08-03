@@ -25,6 +25,11 @@ html {
 /*-------------------------------*/
 /*           Wrappers            */
 /*-------------------------------*/
+.navbar-default {
+  position: absolute;
+  z-index: 999;
+}
+
 #wrapper {
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -76,6 +81,9 @@ html {
 /*-------------------------------*/
 /*     Sidebar nav styles        */
 /*-------------------------------*/
+.sidebar li{
+  padding-left: 20px;
+}
 .navbar-fixed-top {
     top: 0;
     border-width: 0 0 1px;
@@ -342,7 +350,7 @@ html {
 /* SOME DEMO STYLES - NOT REQUIRED */
 body,
 html {
-  /*background-color: #583e7e;*/
+  background-color: #f5f5fa;
 }
 body h1,
 body h2,
@@ -360,6 +368,11 @@ body a {
 }
 body a:hover {
   color: #fff;
+}
+.content{
+  background-color:#fff;
+  padding:10px;
+  margin-bottom: 10px;
 }
 .btn-xs{
   margin-right:10px;

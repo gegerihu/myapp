@@ -9,7 +9,7 @@ var CarouselSchema = new Schema({
         'default': shortid.generate
     },
     title: String,
-    date: { type: Date, default: Date.now()},
+    date: { type: Date, default: Date.now() },
     path: String,
 
 });
@@ -18,18 +18,18 @@ CarouselSchema.statics = {
     fetch: function(cb) {
         return this
             .find({})
-            .sort({'date':-1})
+            .sort({ 'date': -1 })
             .exec(cb);
     },
-    findById: function( id, cb){
+    findById: function(id, cb) {
         return this
-            .findOne({_id: id})
+            .findOne({ _id: id })
             .exec(cb);
     }
 };
 
 
 
-var Carousel = mongoose.model("Carousel",CarouselSchema);
+var Carousel = mongoose.model("Carousel", CarouselSchema);
 
 module.exports = Carousel

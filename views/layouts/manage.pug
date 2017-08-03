@@ -1,0 +1,82 @@
+extends sidebar
+block ueditor
+    link(rel='stylesheet', href='/css/sb-admin-2.min.css')
+block body
+    .container-fluid
+        .content
+            .row
+                .col-lg-12
+                    h2.page-header 总览
+            .row
+                .col-lg-4.col-md-6
+                    .panel.panel-primary
+                        .panel-heading
+                            .row
+                                .col-xs-3
+                                    i.fa.fa-file.fa-5x
+                                .col-xs-9.text-right
+                                    .huge 26
+                                    div 文档
+                        a(href='/manage/content/list' style='color: #337ab7;')
+                            .panel-footer
+                                span.pull-left View Details
+                                span.pull-right
+                                    i.fa.fa-arrow-circle-right
+                                .clearfix
+                .col-lg-4.col-md-6
+                    .panel.panel-green
+                        .panel-heading
+                            .row
+                                .col-xs-3
+                                    i.fa.fa-tasks.fa-5x
+                                .col-xs-9.text-right
+                                    .huge 12
+                                    div 申请
+                        a(href='/manage/application/list')
+                            .panel-footer
+                                span.pull-left View Details
+                                span.pull-right
+                                    i.fa.fa-arrow-circle-right
+                                .clearfix
+                .col-lg-4.col-md-6
+                    .panel.panel-yellow
+                        .panel-heading
+                            .row
+                                .col-xs-3
+                                    i.fa.fa-user.fa-5x
+                                .col-xs-9.text-right
+                                    .huge 124
+                                    div 用户
+                        a(href='/manage/user/list')
+                            .panel-footer
+                                span.pull-left View Details
+                                span.pull-right
+                                    i.fa.fa-arrow-circle-right
+                                .clearfix
+        //- .row
+        //-     .col-lg-12
+        .content
+            .row
+                .col-lg-12
+                    h2.page-header 图表
+                    canvas#myChart(width='400', height='120')
+            //- .col-lg-6
+                .content
+                    h2.page-header 图表
+                    canvas#myChart2
+        .content
+           .row
+                .col-lg-6
+                    h2.page-header 文档分类
+                    canvas#myChartDoc(width='400', height='200')
+                .col-lg-6
+                    h2.page-header 申请表状况
+                    canvas#myChartApp(width='400', height='200')
+
+
+
+block scripts
+    script(src='/js/Chart.bundle.min.js')
+    script(src='/js/moment-with-locales.min.js')
+    script(src='/js/admin-manage.js')
+

@@ -1,0 +1,29 @@
+extends ../_bootstrap
+block stylesheets
+    //- link(href='http://cdn.bootcss.com/twitter-bootstrap/2.2.2/css/bootstrap.min.css', rel='stylesheet')
+    //- link(rel='stylesheet prefetch', href='https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css')
+block body
+    .container(style='min-height:500px')
+        .content
+            .panel.panel-info(style='margin-top: 1em')
+                .panel-heading
+                    h3.panel-title(style='text-align:center') 填写注册邮箱
+                .panel-body
+                    form#email-reset.form-horizontal(method='post' action='/forgot')
+                        .row
+                            .col-md-offset-2.col-md-8
+                                #email-notice.alert.hide
+                                    | 错误提示！
+                        #email-main
+                            .form-group
+                                label.col-md-3.control-label 邮箱
+                                .col-md-6
+                                    input.form-control(type='email', name='email', placeholder='邮箱' required)
+                            .form-group
+                                // Button
+                                .col-md-offset-3.col-md-9
+                                    button#btn-signup.btn.btn-info(type='submit') 修改密码
+
+block scripts
+    script(src='/js/jquery.form.min.js')
+    script(src='/js/user-forgot.js')

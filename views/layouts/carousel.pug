@@ -8,26 +8,19 @@ block body
         .content
             .panel.panel-info
                     .panel-heading
-                        h3.panel-title(style='text-align:center') 文档录入
+                        h3.panel-title(style='text-align:center') 上传主页翻页图片
                     .panel-body
-                        form#uploadForm.form-horizontal(method='post' action='/uploadimg' ,enctype='multipart/form-data')
+                        form#uploadForm.form-horizontal(method='post' action='/carouseluploadimg' ,enctype='multipart/form-data')
+
                             .form-group
-                                label.col-md-3.control-label(for='inputTitle') 标题
-                                .col-md-6
-                                    input#inputTitle.form-control(type='text' name='content[title]' value=content.title)
-                            .form-group
-                                label.col-md-3.control-label(for='inputImg') 小图路径
-                                .col-md-6
-                                    input#inputImg.form-control(type='text' readonly='' name='content[sImg]' disabled value=content.sImg)
-                            .form-group
-                                label.col-md-3.control-label(for='uploadimg') 上传小图
+                                label.col-md-3.control-label(for='uploadimg') 选择图片
                                 .col-md-6
                                     .input-group
                                         input.disabled.form-control(type='text', readonly,disabled)
                                         label.input-group-btn
                                             span.btn.btn-primary
                                                 | 选择图片…
-                                                input#smallimage(type='file', name='smallimage',style='display: none;', multiple='')
+                                                input#smallimage(type='file', name='carousel',style='display: none;', multiple='')
                                 .col-md-6.col-md-offset-3
                                     span.help-block
                                         |请上传JPG，PNG，GIF 格式图片，小于1MB。
@@ -36,17 +29,24 @@ block body
                                     button#status.btn.btn-primary( type='submit' style='text-al') 上传图片
                             .form-group
                                 label.col-md-3.control-label 缩略图
-                                .col-md-4
+                                .col-md-6
                                     #image.thumbnail
                                         img(src=content.sImg)
+                        form#carousel.form-horizontal(method='post' action='/manage/carousel' )
                             .form-group
-                                .col-md-6.col-md-offset-4
+                                label.col-md-3.control-label(for='inputTitle') 标题
+                                .col-md-6
+                                    input#inputTitle.form-control(type='text' name='image[title]' )
+                            .form-group
+                                label.col-md-3.control-label(for='inputImg') 小图路径
+                                .col-md-6
+                                    input#inputImg.form-control(type='text' readonly='' name='image[path]' )
+                            .form-group
+                                .col-md-6.col-md-offset-3
                                     button.btn.btn-primary(type='submit' style='text-al') 录入
+                            .form-group
+                                .col-md-6.col-md-offset-3
+                                    #notice.alert.alert-danger.hide| 错误提示！
 block scripts
-    //- script(src='/js/plugins/piexif.min.js', type='text/javascript')
-    //- script(src='/js/plugins/sortable.min.js', type='text/javascript')
-    //- script(src='/js/plugins/purify.min.js', type='text/javascript')
-    //- script(src='/js/fileinput.min.js')
-    //- //- script(src='/js/adminUpload.js')
     script(src='/js/jquery.form.min.js')
-    script(src='/js/uploadimg.js')
+    script(src='/js/carousel.js')
